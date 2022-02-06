@@ -8,7 +8,10 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "heroku-postbuild": "cd client && NPM_CONFIG_PRODUCTION=false"
+    "build": "cd client && npm run build"
+  },
+  "engines": {
+    "npm": "7.x"
   },
   "keywords": [],
   "author": "",
