@@ -25,7 +25,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  orders: [Order.schema]
+  bills: [Bills.schema],
+  budget: [Budget.schema],
+  savings: [Savings.schema]
 });
 
 // set up pre-save middleware to create password

@@ -16,6 +16,26 @@ const typeDefs = gql`
     category: Category
   }
 
+  type Budget {
+    _id: ID
+    budget_amount: Float
+    category: Category
+  }
+
+ type Bills {
+   _id: ID
+   bill_group: String
+   bill_name: String
+   bill_amount: Float
+   category: Category
+ } 
+
+type Savings {
+  _id: ID
+  savngs_amount: Float
+  category: Category
+}
+
   type Order {
     _id: ID
     purchaseDate: String
