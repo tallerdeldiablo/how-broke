@@ -37,16 +37,16 @@ The MIT License is a permissive free software license originating at the Massach
 ## Contributors
 Ricardo Angulo
 * [GitHub](https://github.com/tallerdeldiablo)
-* Email
+* ricoding404@gmail.com
 
 Mario Bruno
 * [GitHub](https://github.com/MBrunoStem)
 * mbrunostem@gmail.com
 
 Evan Allen
-* [GitHub](https://github.com/)
+* [GitHub](https://github.com/Atalien145)
 * etalle5627@gmail.com
 
 Tanim Iqbal
-* [GitHub](https://github.com/)
+* [GitHub](https://github.com/tanim-iqbal)
 * Email
