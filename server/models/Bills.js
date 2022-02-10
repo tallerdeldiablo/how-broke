@@ -21,6 +21,12 @@ const billsSchema = new Schema(
             trim: true,
             match: [/^[0-9]+(\.[0-9]{1,2})?$/]
         },
+        category: {
+            type: String,
+            required: true,
+            unique: false,
+            trim: true,
+        }
     },
     {
         toJSON: {
