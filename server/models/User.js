@@ -25,9 +25,24 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  bills: [Bills.schema],
-  budget: [Budget.schema],
-  savings: [Savings.schema]
+  bills: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Bills'
+    }
+  ],
+  budget: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Budget'
+    }
+  ],
+  savings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Savings'
+    }
+  ]
 });
 
 // set up pre-save middleware to create password
