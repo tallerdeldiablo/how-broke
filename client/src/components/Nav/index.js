@@ -1,6 +1,8 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
+
 
 function Nav() {
 
@@ -42,10 +44,11 @@ function Nav() {
   return (
     <header className="flex-row px-1">
       <h1>
-        <Link to="/">
-          <span role="img" aria-label="fad fa-sack-dollar">💰</span>
+        <Link to="/home">
+          {/* <span role="img" aria-label="fad fa-sack-dollar">💰</span> */}
          
-          Hows Broke
+          {/* Hows Broke */}
+          <img src={logo} alt="logo" />
         </Link>
       </h1>
 

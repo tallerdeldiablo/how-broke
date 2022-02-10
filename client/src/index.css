@@ -11,6 +11,7 @@
 
 * {
   box-sizing: border-box;
+  color: white;
 }
 
 html,
@@ -26,6 +27,10 @@ body {
   line-height: 1.5;
   font-size: 16px;
   color: var(--dark);
+  background-image: url("./assets/background2.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1,
@@ -38,6 +43,7 @@ h6 {
   font-weight: 500;
   margin: 5px 0;
   line-height: 1.25;
+  color: white;
 }
 
 h1 {
@@ -80,7 +86,8 @@ a:hover {
 }
 
 header {
-  background: var(--primary);
+  /* background: var(--primary); */
+  background-image: linear-gradient(to right, rgb(11, 114, 184) , rgb(28, 144, 190));
 }
 
 header a {
@@ -96,6 +103,7 @@ button {
   outline: none;
   cursor: pointer;
   margin: 0 1px;
+  /* background-color:  rgb(11, 114, 184); */
   background-color: var(--secondary);
 }
 
@@ -131,14 +139,20 @@ input {
 
 input:focus {
   border: 1px solid var(--secondary);
-  box-shadow: 0 0 .25rem rgba(0, 0, 0, .5);
+  box-shadow: 0 0 .25rem rgba(114, 106, 106, 0.5);
 }
 
 .container {
   width: 85%;
   max-width: 1200px;
+  /* max-width: fit-content; */
   margin-left: auto;
   margin-right: auto;
+  /* grid-column: 3;
+  grid-row: 2; */
+  background: rgba(0, 0, 0, 0.692);
+  border-radius: 5px;
+  padding: 5%;
 }
 
 .flex-row {
@@ -208,3 +222,112 @@ input:focus {
     width: 100%;
   }
 }
+
+
+/* MARIO ADDING CSS STARTS HERE */
+main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+}
+
+li {
+list-style-type: none;
+}
+
+#profile {
+  /* background-image: linear-gradient(to right, rgb(0, 153, 255) , rgb(0, 255, 255)); */
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.692);
+  /* background: black; */
+  /* max-height: fit-content; */
+}
+
+#finances-input {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  margin: 10px;
+  padding: 5%;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.692);
+  /* background:black ; */
+}
+
+#budget { 
+  /* background-image: linear-gradient(to right, rgb(0, 153, 255) , rgb(0, 255, 255)); */
+  grid-column: 1 / 3;
+  grid-row: 4 / 7;
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.692);
+  /* background: black; */
+}
+
+#finances-display {
+  /* background-image: linear-gradient(to right, rgb(0, 153, 255) , rgb(0, 255, 255)); */
+  grid-column: 3 / 6;
+  grid-row: 1 / 7;
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.692);
+}
+
+#budget h3,
+#finances-input h3,
+#budget-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, rgb(11, 114, 184) , rgb(28, 144, 190));
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 5px;
+  margin: 5%;
+}
+
+.secondary-container{
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  size: inherit;
+}
+
+#bill-name,
+#bill-amount {
+  width: 25%;
+  padding-left: 5px;
+}
+
+#greeting {
+text-align: center;
+}
+
+.bill-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bill-tag li {
+  background-color: gray;
+  border-radius: 5px;
+  padding: 2%;
+  width: 85%;
+  text-align: center;
+}
+
+/* .bill-tag {
+  background-color: gray;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} */
