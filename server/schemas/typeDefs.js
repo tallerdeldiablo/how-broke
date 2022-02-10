@@ -6,7 +6,17 @@ const typeDefs = gql`
     name: String
   }
 
-  type Product {
+  // type Product {
+  //   _id: ID
+  //   name: String
+  //   description: String
+  //   image: String
+  //   quantity: Int
+  //   amountofmoney: Float
+  //   category: Category
+  // }
+
+  type Budget {
     _id: ID
     name: String
     description: String
@@ -16,11 +26,11 @@ const typeDefs = gql`
     category: Category
   }
 
-  type Budget {
-    _id: ID
-    budget_amount: Float
-    category: Category
-  }
+  // type Budget {
+  //   _id: ID
+  //   budget_amount: Float
+  //   category: Category
+  // }
 
  type Bills {
    _id: ID
@@ -39,7 +49,7 @@ type Savings {
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    budgets: [Budget]
   }
 
   type User {
@@ -61,18 +71,18 @@ type Savings {
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    budgets(category: ID, name: String): [Budget]
+    budget(_id: ID!): Budget
     user: User
     order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    checkout(budgets: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(budgets: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    updateBudget(_id: ID!, quantity: Int!): Budget
     login(email: String!, password: String!): Auth
   }
 `;

@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+//Added Budget model T*
+const { User, Budget, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -8,7 +9,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+    budgets: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -20,16 +21,16 @@ const resolvers = {
           $regex: name
         };
       }
-
-      return await Product.find(params).populate('category');
+//Changed Product to Budget T*
+      return await Budget.find(params).populate('category');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
+    budget: async (parent, { _id }) => {
+      return await Budget.findById(_id).populate('category');
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'orders.budgets',
           populate: 'category'
         });
 
@@ -43,7 +44,7 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'orders.budgets',
           populate: 'category'
         });
 
@@ -54,21 +55,21 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const order = new Order({ budgets: args.budgets });
       const line_items = [];
 
-      const { products } = await order.populate('products').execPopulate();
+      const { budgets } = await order.populate('budgets').execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+      for (let i = 0; i < budgets.length; i++) {
+        const budget = await stripe.budgets.create({
+          name: budgets[i].name,
+          description: budgets[i].description,
+          images: [`${url}/images/${budgets[i].image}`]
         });
 
         const amountofmoney = await stripe.amountofmoneys.create({
-          product: product.id,
-          unit_amount: products[i].amountofmoney * 100,
+          budget: budget.id,
+          unit_amount: budgets[i].amountofmoney * 100,
           currency: 'usd',
         });
 
@@ -96,10 +97,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, { budgets }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ budgets });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
@@ -118,7 +119,7 @@ const resolvers = {
     updateProduct: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Budget.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
