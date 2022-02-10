@@ -44,7 +44,7 @@ function Nav() {
   return (
     <header className="flex-row px-1">
       <h1>
-        <Link to="/">
+        <Link to="/home">
           {/* <span role="img" aria-label="fad fa-sack-dollar">💰</span> */}
          
           {/* Hows Broke */}

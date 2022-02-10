@@ -31,6 +31,7 @@ The MIT License is a permissive free software license originating at the Massach
 
 ## Screenshots
 
+
 ## Deployed Site
 
 
@@ -49,4 +50,4 @@ Evan Allen
 
 Tanim Iqbal
 * [GitHub](https://github.com/tanim-iqbal)
-* Email
+* tanim.iqbal13@gmail.com
