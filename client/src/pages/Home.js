@@ -1,7 +1,7 @@
 import React from "react";
 import BudgetList from "../components/BudgetList";
 import CategoryMenu from "../components/CategoryMenu";
-import Cart from "../components/Cart";
+
 import BillsInput from "../components/BillsInput";
 import BillsList from "../components/BillsList";
 import BudgetInput from "../components/BudgetInput";
@@ -29,9 +29,9 @@ const Home = () => {
   if (Auth.loggedIn()) {
     return (
       <main>
-      <CategoryMenu />
+      {/* <CategoryMenu /> */}
       {/* <BudgetList /> */}
-      <Cart />
+      {/* <Cart /> */}
       <BudgetInput />
       <BillsInput />
       <BillsList />
