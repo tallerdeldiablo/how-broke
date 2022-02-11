@@ -21,7 +21,7 @@ const resolvers = {
           $regex: name
         };
       }
-//Changed Product to Budget T*
+//Changed Budget to Budget T*
       return await Budget.find(params).populate('category');
     },
     budget: async (parent, { _id }) => {
@@ -116,7 +116,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
+    updateBudget: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
       return await Budget.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });

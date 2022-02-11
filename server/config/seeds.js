@@ -74,11 +74,7 @@ db.once('open', async () => {
     lastName: 'Iqbal',
     email: 'ti@testmail.com',
     password: 'password12345',
-    orders: [
-      {
-        budgets: [budgets[0]._id, budgets[0]._id, budgets[1]._id]
-      }
-    ]
+    
   });
 
   await User.create({
@@ -100,11 +96,7 @@ db.once('open', async () => {
     lastName: 'RLP',
     email: 'mario@testmail.com',
     password: 'password12345',
-    orders: [
-      {
-        budget: [budget[0]._id, budget[0]._id, budget[1]._id]
-      }
-    ]
+   
   });
 
 

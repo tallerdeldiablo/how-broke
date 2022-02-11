@@ -6,15 +6,7 @@ const typeDefs = gql`
     name: String
   }
 
-  // type Product {
-  //   _id: ID
-  //   name: String
-  //   description: String
-  //   image: String
-  //   quantity: Int
-  //   amountofmoney: Float
-  //   category: Category
-  // }
+
 
   type Budget {
     _id: ID
@@ -26,11 +18,6 @@ const typeDefs = gql`
     category: Category
   }
 
-  // type Budget {
-  //   _id: ID
-  //   budget_amount: Float
-  //   category: Category
-  // }
 
  type Bills {
    _id: ID
