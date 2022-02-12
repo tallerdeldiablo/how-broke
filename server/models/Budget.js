@@ -40,6 +40,6 @@ const budgetSchema = new Schema({
   ],
 });
 
-const Thought = model('Thought', budgetSchema);
+const Budget = model('Budget', budgetSchema);
 
-module.exports = Thought;
+module.exports = Budget;

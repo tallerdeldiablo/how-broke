@@ -1,11 +1,13 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
 // import { QUERY_ALL_BUDGETS } from '../../utils/queries';
+import { QUERY_BUDGETS } from '../../utils/queries';
 import './style.css';
 
-export default function Display2() {
+export default function DisplayTable() {
 
     // const { loading, data } = useQuery(QUERY_ALL_BUDGETS);
+         const { loading, data } = useQuery(QUERY_BUDGETS);
 
     // Use optional chaining to check if data exists and if it has a budgets property. If not, return an empty array to use.
     const buds = data?.budgets || [];
@@ -17,33 +19,24 @@ export default function Display2() {
             {loading ? (
               <div>Loading...</div>
             ) : (
-
-                <>
+              <>
                 <div> 
                                   
                   </div>
                   <table id="customers">
                     <tr>
-                      
                         <th>Expenses</th>
                         <th>Amount</th>
                     </tr>
                     <tr>
-                        <td>{data.budgets[1].name}</td>
-                        <td>{data.budgets[1].amountofmoney}</td>
+                        <td>{data.budgets[1].billName}</td>
+                        <td>{data.budgets[1].billsDescription}</td>
                
                     </tr>
                     <tr>
-                        <td>{data.budgets[2].name}</td>
-                        <td>{data.budgets[2].amountofmoney}</td>
+                        <td>{data.budgets[2].billName}</td>
+                        <td>{data.budgets[2].billsDescription}</td>
                     </tr>
-                    <tr>
-                    <td>{data.budgets[3].name}</td>
-                        <td>{data.budgets[3].amountofmoney}</td>
-               
-                    </tr>
-           
-
                     <tr>
                     <td>Total</td>
                         <td>{data.budgets[1].amountofmoney+data.budgets[2].amountofmoney+data.budgets[3].amountofmoney}</td>
@@ -51,8 +44,6 @@ export default function Display2() {
                     </tr>
                     
                     </table>
-
-
             </>
                 
             )}

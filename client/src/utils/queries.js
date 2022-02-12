@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-
 export const QUERY_ME = gql`
   query me {
     me {
@@ -17,11 +16,8 @@ export const QUERY_ME = gql`
   }
 `;
 
-
-
-
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
+export const QUERY_BUDGETS = gql`
+  query getBudgets {
     budgets {
       _id
       billName
