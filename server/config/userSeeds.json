@@ -1,0 +1,32 @@
+[
+  {
+    "username": "Michael",
+    "email": "mp@iamthebestdev.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Tanim",
+    "email": "ti@testmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Rico",
+    "email": "wtls@techfriends.dev",
+    "password": "password12345"
+  },
+  {
+    "username": "Evan",
+    "email": "ea@tindermail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Mario",
+    "email": "mario@testmail.com",
+    "password": "password12345"
+  },
+  {
+    "username": "Lernantino",
+    "email": "lernantino@techfriends.dev",
+    "password": "password12345"
+  }
+]

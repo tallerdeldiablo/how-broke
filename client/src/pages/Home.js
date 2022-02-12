@@ -1,38 +1,19 @@
 import React from "react";
-import BudgetList from "../components/BudgetList";
-import CategoryMenu from "../components/CategoryMenu";
 
 import BillsInput from "../components/BillsInput";
 import BillsList from "../components/BillsList";
 import BudgetInput from "../components/BudgetInput";
 import Display from "../components/Display";
-import { LOGIN } from '../utils/mutations';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
-// const Home = () => {
-//   return (
-//     <div className="container">
-//       <CategoryMenu />
-//       <BudgetList />
-//       <Cart />
-//       <BudgetInput />
-//       <BillsInput />
-//       <BillsList />
-//       <Display />
-//     </div>
-//   );
-// };
 
 const Home = () => {
 
   if (Auth.loggedIn()) {
     return (
       <main>
-      {/* <CategoryMenu /> */}
-      {/* <BudgetList /> */}
-      {/* <Cart /> */}
-      <BudgetInput />
+        <BudgetInput />
       <BillsInput />
       <BillsList />
       <Display /> 

@@ -1,131 +1,41 @@
 const { AuthenticationError } = require('apollo-server-express');
-//Added Budget model T*
-const { User, Budget, Category, Order } = require('../models');
+const { User, Budget } = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    categories: async () => {
-      return await Category.find();
+    users: async () => {
+      return User.find().populate('budgets');
     },
-    budgets: async (parent, { category, name }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-//Changed Budget to Budget T*
-      return await Budget.find(params).populate('category');
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('budgets');
     },
-    budget: async (parent, { _id }) => {
-      return await Budget.findById(_id).populate('category');
+    budgets: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Budget.find(params).sort({ createdAt: -1 });
     },
-    user: async (parent, args, context) => {
+    budget: async (parent, { budgetId }) => {
+      return Budget.findOne({ _id: budgetId });
+    },
+    me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.budgets',
-          populate: 'category'
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
+        return User.findOne({ _id: context.user._id }).populate('budgets');
       }
-
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('You need to be logged in!');
     },
-    order: async (parent, { _id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'orders.budgets',
-          populate: 'category'
-        });
-
-        return user.orders.id(_id);
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ budgets: args.budgets });
-      const line_items = [];
-
-      const { budgets } = await order.populate('budgets').execPopulate();
-
-      for (let i = 0; i < budgets.length; i++) {
-        const budget = await stripe.budgets.create({
-          name: budgets[i].name,
-          description: budgets[i].description,
-          images: [`${url}/images/${budgets[i].image}`]
-        });
-
-        const amountofmoney = await stripe.amountofmoneys.create({
-          budget: budget.id,
-          unit_amount: budgets[i].amountofmoney * 100,
-          currency: 'usd',
-        });
-
-        line_items.push({
-          amountofmoney: amountofmoney.id,
-          quantity: 1
-        });
-      }
-
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
-      });
-
-      return { session: session.id };
-    }
   },
+
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
       const token = signToken(user);
-
       return { token, user };
-    },
-    addOrder: async (parent, { budgets }, context) => {
-      console.log(context);
-      if (context.user) {
-        const order = new Order({ budgets });
-
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-        return order;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    updateBudget: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Budget.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError('No user found with this email address');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -137,8 +47,42 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+    addBudget: async (parent, { budgetText }, context) => {
+      if (context.user) {
+        const budget = await Budget.create({
+          budgetText,
+          budgetAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { budgets: budget._id } }
+        );
+
+        return budget;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  
+    removeBudget: async (parent, { budgetId }, context) => {
+      if (context.user) {
+        const budget = await Budget.findOneAndDelete({
+          _id: budgetId,
+          budgetAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { budgets: budget._id } }
+        );
+
+        return budget;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+ 
+  },
 };
 
 module.exports = resolvers;

@@ -1,21 +1,35 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_BUDGETS = gql`
-  query getBudgets($category: ID) {
-    budgets(category: $category) {
+
+export const QUERY_ME = gql`
+  query me {
+    me {
       _id
-      name
-      description
-      amountofmoney
-      quantity
-      image
-      category {
+      username
+      email
+      budgets {
         _id
+        billName
+        billsDescription
+        createdAt
       }
     }
   }
 `;
 
+
+
+
+export const QUERY_THOUGHTS = gql`
+  query getThoughts {
+    budgets {
+      _id
+      billName
+      billsDescription
+      createdAt
+    }
+  }
+`;
 export const QUERY_CHECKOUT = gql`
   query getCheckout($budgets: [ID]!) {
     checkout(budgets: $budgets) {
@@ -24,46 +38,17 @@ export const QUERY_CHECKOUT = gql`
   }
 `;
 
-export const QUERY_ALL_BUDGETS = gql`
-  {
-    budgets {
-      _id
-      name
-      description
-      amountofmoney
-      quantity
-      category {
-        name
-      }
-    }
-  }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
-    }
-  }
-`;
 
 export const QUERY_USER = gql`
-  {
-    user {
-      firstName
-      lastName
-      orders {
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      budgets {
         _id
-        purchaseDate
-        budgets {
-          _id
-          name
-          description
-          amountofmoney
-          quantity
-          image
-        }
+        billName
+        createdAt
       }
     }
   }

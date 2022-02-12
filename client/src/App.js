@@ -1,22 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
+  ApolloClient,  InMemoryCache,  ApolloProvider,  createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
 import Home from './pages/Home';
-// import Detail from './pages/Detail';
-// import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
+import Header from './components/Header';
+import Profile from './pages/Profile';
+
+
+
 // import Success from './pages/Success';
-// import OrderHistory from './pages/OrderHistory';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -41,20 +37,30 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <StoreProvider>
-            <Nav />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/home" component={Home} />
-              {/* <Route exact path="/success" component={Success} /> */}
-              {/* <Route exact path="/orderHistory" component={OrderHistory} /> */}
-              {/* <Route exact path="/budgets/:id" component={Detail} /> */}
-              {/* <Route component={NoMatch} /> */}
-            </Switch>
-          </StoreProvider>
+        <div className="flex-column justify-flex-start min-100-vh">
+        <Header />
+          <div className="container">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/me">
+              <Profile />
+            </Route>
+            <Route exact path="/profiles/:username">
+              <Profile />
+            </Route>
+           
+          </div>
+     
         </div>
       </Router>
     </ApolloProvider>
