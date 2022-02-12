@@ -17,6 +17,7 @@ const Home = () => {
       <BillsInput />
       <BillsList />
       <Display /> 
+      
       </main>
     );
   } else {
