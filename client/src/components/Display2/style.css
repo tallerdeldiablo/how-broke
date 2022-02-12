@@ -1,0 +1,12 @@
+.divanimation {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(30, 255, 0);
+  animation-name: example;
+  animation-duration: 6s;
+}
+
+@keyframes example {
+  from {background-color: rgb(123, 255, 0);}
+  to {background-color:  red;}
+}
