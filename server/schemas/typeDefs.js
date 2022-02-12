@@ -1,21 +1,14 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
-    _id: ID
-    name: String
-  }
-
 
 
   type Budget {
     _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    amountofmoney: Float
-    category: Category
+    billName: String
+    budgetAuthor: String
+    createdAt: String
+ 
   }
 
 
@@ -24,13 +17,13 @@ const typeDefs = gql`
    bill_group: String
    bill_name: String
    bill_amount: Float
-   category: Category
+
  } 
 
 type Savings {
   _id: ID
   savngs_amount: Float
-  category: Category
+
 }
 
   type Order {
@@ -38,13 +31,12 @@ type Savings {
     purchaseDate: String
     budgets: [Budget]
   }
-
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    username: String
     email: String
-    orders: [Order]
+    password: String
+    budgets: [Budget]!
   }
 
   type Checkout {
@@ -55,22 +47,20 @@ type Savings {
     token: ID
     user: User
   }
-
   type Query {
-    categories: [Category]
-    budgets(category: ID, name: String): [Budget]
-    budget(_id: ID!): Budget
-    user: User
-    order(_id: ID!): Order
-    checkout(budgets: [ID]!): Checkout
+    users: [User]
+    user(username: String!): User
+    budgets(username: String): [Budget]
+    budget(budgetId: ID!): Budget
+    me: User
   }
-
-  type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(budgets: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateBudget(_id: ID!, quantity: Int!): Budget
+ type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addBudget(billName: String!): Budget
+   
+    removeBudget(budgetId: ID!): Budget
+   
   }
 `;
 
