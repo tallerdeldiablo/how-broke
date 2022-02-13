@@ -13,7 +13,7 @@ const Home = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <>
+ 
       <Display />
       {/* // <main>
       //   <BudgetInput />
@@ -21,8 +21,9 @@ const Home = () => {
       // <BillsList />
       // <Display /> 
       
-      // </main> */}
-      </>
+     // </main> */}
+   
+
     );
   } else {
     return (<>
