@@ -10,3 +10,18 @@
   from {background-color: rgb(123, 255, 0);}
   to {background-color:  red;}
 }
+
+.container {
+  color: white;
+  background: rgba(0, 0, 0, 0.692);
+  padding: 15px;
+}
+
+.overview-container {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+.overallBudget {
+    background-color: lightsalmon;
+    border-radius: 35px;
+}
+
+.income {
+    background-color: rgba(20, 181, 189, 0.928);
+    border-radius: 35px;
+}
+
+.expenses {
+    background-color: rgba(235, 75, 113, 0.928);
+    border-radius: 35px;
+}
