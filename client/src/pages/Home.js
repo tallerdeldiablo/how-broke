@@ -6,19 +6,23 @@ import BudgetInput from "../components/BudgetInput";
 import Display from "../components/Display";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import Display2 from "../components/Display2";
 
 
 const Home = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <main>
-        <BudgetInput />
-      <BillsInput />
-      <BillsList />
-      <Display /> 
+      <>
+      <Display />
+      {/* // <main>
+      //   <BudgetInput />
+      // <BillsInput />
+      // <BillsList />
+      // <Display /> 
       
-      </main>
+      // </main> */}
+      </>
     );
   } else {
     return (<>
