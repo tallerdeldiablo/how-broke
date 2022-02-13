@@ -7,7 +7,8 @@ import './style.css';
 export default function User() {
     return (
         
-        <section id="profile">
+        
+        <>
 
    
         <h2 id="greeting">Hello, User's     {Auth.getProfile().data.username}!</h2>
@@ -20,6 +21,6 @@ export default function User() {
               </svg></button>
         </div> */}
         
-    </section>
+    </>
     )
 };
