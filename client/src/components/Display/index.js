@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BudgetCard from "../BudgetCard";
 // import DisplayProgressBar from "../DisplayProgressBar";
 import ProgressBars from "../ProgressBars";
+import ModalT from "../ModalT";
 
 // import Display3 from "../Display3";
 
