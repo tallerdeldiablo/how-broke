@@ -14,14 +14,14 @@ const Home = () => {
   if (Auth.loggedIn()) {
     return (
       <>
-      <Display />
-      {/* // <main>
-      //   <BudgetInput />
-      // <BillsInput />
-      // <BillsList />
-      // <Display /> 
       
-      // </main> */}
+       <main>
+         <BudgetInput />
+       <BillsInput />
+       <BillsList />
+       <Display /> 
+      
+       </main>
       </>
     );
   } else {
