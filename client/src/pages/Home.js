@@ -23,6 +23,7 @@ const Home = () => {
       
        </main>
       </>
+
     );
   } else {
     return (<>
