@@ -20,7 +20,8 @@ const Header = () => {
   };
   return (
     //took bg-primary out of className
-    <Navbar className="bgcolor" fixed="top" expand={false}>
+    //fixed="top" in className to fix bar on top T*
+    <Navbar className="bgcolor"  expand={false}>
       <Container fluid>
         <Navbar.Brand href="#"></Navbar.Brand>
         <img src={logo} alt="logo" />
