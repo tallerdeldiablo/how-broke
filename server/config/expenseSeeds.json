@@ -1,0 +1,18 @@
+[
+  {
+    "expenseValue": "3000",
+    "expenseAuthor": "Brian Kernighan"
+  },
+  {
+    "expenseValue": "3000",
+    "expenseAuthor": "Max Kanat-Alexander"
+  },
+  {
+    "expenseValue": "3000",
+    "expenseAuthor": "Why The Lucky Stiff"
+  },
+  {
+    "expenseValue": "3000",
+    "expenseAuthor": "Lernantino"
+  }
+]

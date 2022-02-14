@@ -53,3 +53,13 @@ export const QUERY_USER = gql`
     }
   }
 `;
+export const QUERY_EXPENSES = gql`
+  query getExpenses {
+    expenses {
+      _id
+      expenseValue
+      expenseAuthor
+      createdAt
+    }
+  }
+`;

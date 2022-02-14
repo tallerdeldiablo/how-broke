@@ -52,3 +52,17 @@ export const ADD_ORDER = gql`
   }
 `;
 
+export const ADD_EXPENSE = gql`
+  mutation addExpense($expenseValue: String!, $expenseAuthor: String!) {
+    addExpense(expenseValue: $expenseValue, expenseAuthor: $expenseAuthor) {
+      _id
+      expenseValue
+      expenseAuthor
+      createdAt
+      amounts {
+        _id
+        amountValue
+      }
+    }
+  }
+`;
