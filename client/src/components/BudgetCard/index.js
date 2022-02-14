@@ -32,6 +32,7 @@ export default function BudgetCard() {
             </Card.Body>
           </Card>
         </Col>
+        <br></br>
         <Col>
           <Card className="income" style={{ width: "100%" }}>
             <Card.Body>
