@@ -7,6 +7,7 @@ import Display from "../components/Display";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import Display2 from "../components/Display2";
+import "./style.css";
 
 
 const Home = () => {
@@ -15,13 +16,16 @@ const Home = () => {
     return (
       <>
       
-       <main>
-         <BudgetInput />
+      <div className="loweringContent">
+
+      </div>
+       {/* <main> */}
+        {/* <BudgetInput />
        <BillsInput />
-       <BillsList />
+       <BillsList /> */}
        <Display /> 
       
-       </main>
+       {/* </main> */}
       </>
 
     );

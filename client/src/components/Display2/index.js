@@ -25,7 +25,7 @@ export default function Display2() {
             <h1>Financial Overview</h1>
           </div>
           <div>
-            <h3>Monthly Income: $6,00</h3>
+            <h3>Monthly Income: $6,000</h3>
           </div>
           <br></br>
 
