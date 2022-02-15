@@ -17,9 +17,17 @@ export default function Display() {
     <>
      <DisplayExpense/>
     <Display2/>
+
+     <DisplayExpense/>
+
+     <BudgetCard/>
+     <br></br>
+     <ProgressBars/>
+
 //     <BudgetCard/>
 //     <br></br>
 //     <ProgressBars/>
+
 
 
     </>

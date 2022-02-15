@@ -14,8 +14,17 @@ const Home = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <>
+    <>
+
+    <main>
+    {/* <BudgetInput />
+    <BillsInput />
+    <BillsList /> */}
+    <Display /> 
       
+    </main>
+    </>
+
       <div className="loweringContent">
 
       </div>
@@ -27,6 +36,7 @@ const Home = () => {
       
        {/* </main> */}
       </>
+
 
     );
   } else {
