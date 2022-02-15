@@ -24,10 +24,7 @@ const Header = () => {
   return (
     <>  
 
-    //took bg-primary out of className
 
-
-    //fixed="top" in className to fix bar on top T*
     <Navbar className="bgcolor"  expand={false}>
       <Container fluid>
         <Navbar.Brand href="#"></Navbar.Brand>
@@ -73,8 +70,11 @@ const Header = () => {
     <Col xs={3}>   <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
+              <Link className="btn btn-lg btn-info m-2" to="/home">
                 {Auth.getProfile().data.username}'s Budget
+              </Link>
+              <Link className="btn btn-lg btn-info m-2" to="/receipt">
+                {Auth.getProfile().data.username}'s Bills
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout

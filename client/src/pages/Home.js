@@ -13,6 +13,8 @@ import FormControl from "react-bootstrap/FormControl";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import money from "../assets/mo-money.jpg"
+
 const Home = () => {
 
   if (Auth.loggedIn()) {
@@ -23,6 +25,7 @@ const Home = () => {
     {/* <BudgetInput />
     <BillsInput />
     <BillsList /> */}
+    <h2 id="greeting">Hello, {Auth.getProfile().data.username}!</h2>
     <Display /> 
       
     </main>
@@ -46,21 +49,18 @@ const Home = () => {
     return (<>
     
     <Container>
-  <Row>
-    <Col xs={{ order: 'last' }}>First, but last</Col>
-    <Col xs>   MORE MONEY MORE PROBLEMS
+  {/* <Row>
+    <Col xs={{ order: 'last' }}> First</Col>
+    <Col xs>   Mo Money */}
         
-        <br></br>
+        {/* <br></br>
         Animation logo intro
         <br></br>
         Loading
-        <br></br>
-      <ul className="flex-row">
+        <br></br> */}
+      {/* <ul className="flex-row"> */}
 
-       
-
-
-        <li>
+        {/* <li>
           <Link to="/signup">
             Signup
           </Link>
@@ -69,10 +69,12 @@ const Home = () => {
           <Link to="/login">
             Login
           </Link>
-        </li>
-      </ul></Col>
-    <Col xs={{ order: 'first' }}>Third, but first</Col>
-  </Row>
+        </li> */}
+      {/* </ul></Col> */}
+    {/* <Col xs={{ order: 'first' }}> Last</Col> */}
+  {/* </Row> */}
+
+  <img src={money} id="michael" alt="money" />
 </Container>
   
       </>
