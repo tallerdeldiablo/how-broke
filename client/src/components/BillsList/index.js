@@ -4,7 +4,7 @@ import "./style.css";
 export default function Budget() {
     return (
         <section id="budget">
-        <h3 id="rent-list-title">Rent</h3>
+       <h3 id="rent-list-title">Rent</h3>
         {/* <ul className="bill-tag">
             <li>Feb 2022 $1500</li>
         </ul> */}
