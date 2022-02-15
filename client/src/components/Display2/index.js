@@ -29,7 +29,7 @@ export default function Display2() {
           </div>
           <br></br>
 
-        <div class="place-container">
+        <div className="place-container">
           <div>
             <ul>Overall Monthly Budget: $4,500 <img src="https://img.icons8.com/color/40/000000/budget.png"/></ul>
             <ul>Housing: $1,200 <img src="https://img.icons8.com/color/35/000000/home.png"/></ul>

@@ -38,21 +38,21 @@ export const QUERY_CHECKOUT = gql`
   }
 `;
 
-
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
       username
       email
-      budgets {
+      expenses {
         _id
-        billName
+        expenseValue
         createdAt
       }
     }
   }
 `;
+
 export const QUERY_EXPENSES = gql`
   query getExpenses {
     expenses {
@@ -60,6 +60,21 @@ export const QUERY_EXPENSES = gql`
       expenseValue
       expenseAuthor
       createdAt
+    }
+  }
+`;
+export const QUERY_SINGLE_Expense = gql`
+  query getSingleExpense($expenseId: ID!) {
+    expense(expenseId: $expenseId) {
+      _id
+      expenseValue
+      expenseAuthor
+      createdAt
+      amounts {
+        _id
+        amountValue
+        createdAt
+      }
     }
   }
 `;

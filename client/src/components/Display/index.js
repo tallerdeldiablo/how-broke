@@ -15,6 +15,7 @@ import ModalT from "../ModalT";
 export default function Display() {
     return (
     <>
+     <DisplayExpense/>
     <Display2/>
 //     <BudgetCard/>
 //     <br></br>

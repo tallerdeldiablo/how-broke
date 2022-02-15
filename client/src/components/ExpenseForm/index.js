@@ -55,7 +55,7 @@ const ExpenseForm = () => {
 
   return (
     <div>
-      <h3>More Money More Problems</h3>
+      <h3>ADD A NEW EXPENSE</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -73,12 +73,13 @@ const ExpenseForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="expenseValue"
-                placeholder="Here's a new expense..."
+                placeholder="Add a new expense..."
                 value={expenseValue}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
+         
             </div>
 
             <div className="col-12 col-lg-3">

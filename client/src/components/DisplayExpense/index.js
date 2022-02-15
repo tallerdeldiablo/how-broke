@@ -27,7 +27,7 @@ const DisplayExpense = () => {
           ) : (
             <ExpenseList
               expenses={expenses}
-              title="List of expenses"
+              title="Expenses Category"
             />
           )}
         </div>
