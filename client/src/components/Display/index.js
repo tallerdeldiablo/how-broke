@@ -15,6 +15,7 @@ import Modal from 'react-bootstrap/Modal'
 export default function Display() {
     return (
     <>
+
      <DisplayPlus/>
     <Display2/>
 
@@ -23,13 +24,6 @@ export default function Display() {
      <BudgetCard/>
      <br></br>
      <ProgressBars/>
-
-//     <BudgetCard/>
-//     <br></br>
-//     <ProgressBars/>
-
-
-
     </>
     )
 };

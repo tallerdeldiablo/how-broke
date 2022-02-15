@@ -9,7 +9,6 @@ const Receipt = () => {
     if (Auth.loggedIn()) {
         return (
             <div>
-                <BudgetInput />
                 <BillsInput />
                 <BillsList />
             </div>
