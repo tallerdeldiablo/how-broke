@@ -23,11 +23,11 @@ export default function BudgetCard() {
           <Card className="overallBudget" style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>
-                <h2>Balance</h2>
+                <h2>Income</h2>
               </Card.Title>
               <Card.Text className="d-flex justify-content-between fw-normal">
-                <h3>$1,897</h3>
-                <img src="https://img.icons8.com/color/90/000000/wallet--v2.png" />
+                <h3>$5,500</h3>
+                <img src="https://img.icons8.com/color/90/000000/man-holding-bags-with-money-skin-type-4.png" />
               </Card.Text>
             </Card.Body>
           </Card>
@@ -37,11 +37,12 @@ export default function BudgetCard() {
           <Card className="income" style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>
-                <h2>Income</h2>
+                <h2>Expenses</h2>
               </Card.Title>
               <Card.Text className="d-flex justify-content-between fw-normal">
-                <h3>$5,600</h3>
-                <img src="https://img.icons8.com/color/90/000000/man-holding-bags-with-money-skin-type-4.png" />
+                <h3>$3,200</h3>
+                
+                <img src="https://img.icons8.com/color/95/000000/empty-pockets.png" />
               </Card.Text>
             </Card.Body>
           </Card>
@@ -53,13 +54,14 @@ export default function BudgetCard() {
           <Card className="expenses" style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>
-                <h2>Expenses</h2>
+                <h2>Savings</h2>
               </Card.Title>
               <Card.Text className="d-flex justify-content-between fw-normal">
                 <h3>$5,600</h3>
-                <img src="https://img.icons8.com/color/95/000000/empty-pockets.png" />
+                <img src="https://img.icons8.com/external-fauzidea-flat-fauzidea/90/000000/external-piggy-bank-e-commerce-fauzidea-flat-fauzidea.png"/>
               </Card.Text>
-              <img src="https://img.icons8.com/color/60/000000/add--v1.png" />
+              {/* <img src="https://img.icons8.com/color/60/000000/add--v1.png" /> */}
+              
             </Card.Body>
           </Card>
         </Col>
