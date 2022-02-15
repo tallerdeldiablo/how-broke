@@ -25,43 +25,53 @@ type Savings {
   savngs_amount: Float
 
 }
+type User {
+  _id: ID
+  username: String
+  email: String
+  password: String
+  expenses: [Expense]!
+}
 
-  type Order {
-    _id: ID
-    purchaseDate: String
-    budgets: [Budget]
-  }
-  type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
-    budgets: [Budget]!
-  }
+type Expense {
+  _id: ID
+  expenseValue: String
+  expenseAuthor: String
+  createdAt: String
+  amounts: [Amount]!
+}
 
-  type Checkout {
-    session: ID
-  }
+type Amount {
+  _id: ID
+  amountValue: String
+  amountAuthor: String
+  createdAt: String
+}
 
-  type Auth {
-    token: ID
-    user: User
-  }
-  type Query {
-    users: [User]
-    user(username: String!): User
-    budgets(username: String): [Budget]
-    budget(budgetId: ID!): Budget
-    me: User
-  }
- type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addBudget(billName: String!): Budget
-   
-    removeBudget(budgetId: ID!): Budget
-   
-  }
+type Auth {
+  token: ID!
+  user: User
+}
+
+type Query {
+  users: [User]
+  user(username: String!): User
+  expenses(username: String): [Expense]
+  expense(expenseId: ID!): Expense
+}
+
+type Mutation {
+  addUser(username: String!, email: String!, password: String!): Auth
+  login(email: String!, password: String!): Auth
+  addExpense(expenseValue: String!, expenseAuthor: String!): Expense
+  addAmount(
+    expenseId: ID!
+    amountValue: String!
+    amountAuthor: String!
+  ): Expense
+  removeExpense(expenseId: ID!): Expense
+  removeAmount(expenseId: ID!, amountId: ID!): Expense
+}
 `;
 
 module.exports = typeDefs;

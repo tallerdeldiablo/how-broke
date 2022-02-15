@@ -9,7 +9,11 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 import Profile from './pages/Profile';
+
 import Receipt from './pages/Receipt'
+
+import SingleExpense from './pages/SingleExpense';
+
 
 
 // import Success from './pages/Success';
@@ -58,9 +62,14 @@ function App() {
             <Route exact path="/profiles/:username">
               <Profile />
             </Route>
+
             {/* Testing route/button to bills/receipt lines 62-64 -Mario */}
             <Route exact path="/receipt">
               <Receipt />
+
+            <Route exact path="/expenses/:expenseId">
+              <SingleExpense />
+
             </Route>
           </div>
      

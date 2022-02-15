@@ -7,6 +7,7 @@ import Display from "../components/Display";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import Display2 from "../components/Display2";
+import "./style.css";
 
 
 const Home = () => {
@@ -14,7 +15,7 @@ const Home = () => {
   if (Auth.loggedIn()) {
     return (
     <>
-      
+
     <main>
     {/* <BudgetInput />
     <BillsInput />
@@ -23,6 +24,19 @@ const Home = () => {
       
     </main>
     </>
+
+      <div className="loweringContent">
+
+      </div>
+       {/* <main> */}
+        {/* <BudgetInput />
+       <BillsInput />
+       <BillsList /> */}
+       <Display /> 
+      
+       {/* </main> */}
+      </>
+
 
     );
   } else {

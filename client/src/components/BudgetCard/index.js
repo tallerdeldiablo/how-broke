@@ -17,7 +17,7 @@ export default function BudgetCard() {
   // const buds = data?.budgets || [];
 
   return (
-    <Container>
+    <Container className="cards">
       <Row>
         <Col>
           <Card className="overallBudget" style={{ width: "100%" }}>

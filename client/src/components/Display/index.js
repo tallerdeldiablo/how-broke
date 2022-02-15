@@ -6,6 +6,7 @@ import DisplayExpense from "../DisplayExpense";
 import BudgetCard from "../BudgetCard";
 // import DisplayProgressBar from "../DisplayProgressBar";
 import ProgressBars from "../ProgressBars";
+import ModalT from "../ModalT";
 
 // import Display3 from "../Display3";
 
@@ -14,6 +15,7 @@ import ProgressBars from "../ProgressBars";
 export default function Display() {
     return (
     <>
+     <DisplayExpense/>
     <Display2/>
 
      <DisplayExpense/>
@@ -21,6 +23,11 @@ export default function Display() {
      <BudgetCard/>
      <br></br>
      <ProgressBars/>
+
+//     <BudgetCard/>
+//     <br></br>
+//     <ProgressBars/>
+
 
 
     </>

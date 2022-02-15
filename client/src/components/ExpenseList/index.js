@@ -22,7 +22,7 @@ const ExpenseList = ({ expenses, title }) => {
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${expense._id}`}
+              to={`/expenses/${expense._id}`}
             >
             💰
             </Link>

@@ -21,10 +21,12 @@ export default function ProgressBars() {
   const amountHere= 67
 
   return (
-      <Container>
+      <Container className="progressComponent">
           <div>
           <img src="https://img.icons8.com/color/49/000000/home.png"/>
-          <h3>Home</h3>
+          <h3 className="d-flex justify-content-between fw-normal">Home
+          <p>-$1,300</p>
+          </h3>
     <ProgressBar className="rounded-pill">
   <ProgressBar variant="success" now={amountHere} key={1} />
 </ProgressBar>
@@ -34,7 +36,9 @@ export default function ProgressBars() {
 
 <div>
 <img src="https://img.icons8.com/external-icongeek26-flat-icongeek26/60/000000/external-phone-essentials-icongeek26-flat-icongeek26.png"/>
-<h3>Phone</h3>
+<h3 className="d-flex justify-content-between fw-normal">Phone
+<p>-$135</p>
+</h3>
 <ProgressBar className="rounded-pill">
   <ProgressBar variant="warning" now={70} key={1} />
 </ProgressBar>
@@ -44,8 +48,10 @@ export default function ProgressBars() {
 <br></br>
 
 <div>
-<img src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/64/000000/external-car-car-itim2101-lineal-color-itim2101-1.png"/>
-<h3>Car</h3>
+<img src="https://img.icons8.com/doodle/60/000000/skateboard--v1.png"/>
+<h3 className="d-flex justify-content-between fw-normal">Transportation
+<p>-$450</p>
+</h3>
 <ProgressBar className="rounded-pill">
   <ProgressBar variant="success" now={35} key={1} />
 </ProgressBar>
@@ -56,8 +62,9 @@ export default function ProgressBars() {
 <br></br>
 
 <div>
-<img src="https://img.icons8.com/color/55/000000/ingredients.png"/>
-<h3>Food</h3>
+<img src="https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-noodles-takeaway-wanicon-flat-wanicon.png"/>
+<h3 className="d-flex justify-content-between fw-normal">Food
+<p>-$350</p></h3>
 <ProgressBar className="rounded-pill">
   <ProgressBar variant="warning" now={55} key={1} />
 </ProgressBar>
@@ -69,7 +76,8 @@ export default function ProgressBars() {
 
 <div>
 <img src="https://img.icons8.com/external-others-phat-plus/64/000000/external-entertainment-studio-color-line-others-phat-plus-5.png"/>
-<h3>Entertainment</h3>
+<h3 className="d-flex justify-content-between fw-normal">Entertainment
+<p>-$250</p></h3>
 <ProgressBar className="rounded-pill">
   <ProgressBar variant="danger" now={90} key={1} />
 </ProgressBar>
@@ -81,7 +89,9 @@ export default function ProgressBars() {
 
 <div>
 <img src="https://img.icons8.com/color/48/000000/marijuana-leaf.png"/>
-<h3>Other</h3>
+<h3 className="d-flex justify-content-between fw-normal">Other
+<p>-$225</p>
+</h3>
 <ProgressBar className="rounded-pill">
   <ProgressBar variant="danger" now={100} key={1} />
 </ProgressBar>
