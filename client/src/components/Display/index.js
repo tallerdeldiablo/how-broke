@@ -9,8 +9,8 @@ import ProgressBars from "../ProgressBars";
 import ModalT from "../ModalT";
 
 // import Display3 from "../Display3";
-
-
+import DisplayPlus from "../DisplayPlus";
+import Modal from 'react-bootstrap/Modal'
 
 export default function Display() {
     return (
@@ -21,7 +21,9 @@ export default function Display() {
      <br></br>
      <ProgressBars/>
 
+     <DisplayPlus/>
 
+     <DisplayExpense/>
     </>
     )
 };

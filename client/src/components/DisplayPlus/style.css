@@ -1,0 +1,14 @@
+.plusfixed {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #46b8da;
+}
+
+#mybuttonplus {
+  position: fixed;
+  bottom: -4px;
+  right: 50%;
+  z-index: 2;
+}
