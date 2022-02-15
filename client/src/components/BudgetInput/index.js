@@ -11,8 +11,8 @@ export default function User() {
         <>
 
    
-        <h2 id="greeting">Hello, User's     {Auth.getProfile().data.username}!</h2>
-        <h3 id="budget-display">Budget</h3>
+        {/* <h2 id="greeting">Hello, {Auth.getProfile().data.username}!</h2> */}
+        {/* <h3 id="budget-display">Budget</h3> */}
 
         {/* <div className="secondary-container">
             <input type="text" id="budget-amount" name="budget-amount" placeholder="Budget" />

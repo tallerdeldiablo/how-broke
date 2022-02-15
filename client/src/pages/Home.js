@@ -13,16 +13,16 @@ const Home = () => {
 
   if (Auth.loggedIn()) {
     return (
-      <>
+    <>
       
-       <main>
-         <BudgetInput />
-       <BillsInput />
-       <BillsList />
-       <Display /> 
+    <main>
+    {/* <BudgetInput />
+    <BillsInput />
+    <BillsList /> */}
+    <Display /> 
       
-       </main>
-      </>
+    </main>
+    </>
 
     );
   } else {

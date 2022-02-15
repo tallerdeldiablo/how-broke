@@ -24,8 +24,12 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
+              <Link className="btn btn-lg btn-info m-2" to="/home">
                 {Auth.getProfile().data.username}'s Budget
+              </Link>
+              {/* Testing out Bill/Receipt page lines 30-33 -Mario */}
+              <Link className="btn btn-lg btn-info m-2" to="/receipt">
+                {Auth.getProfile().data.username}'s Bills
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
                 Logout
