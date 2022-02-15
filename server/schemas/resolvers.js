@@ -1,27 +1,21 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Budget } = require('../models');
+const { User, Expense } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('budgets');
+      return User.find().populate('expenses');
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('budgets');
+      return User.findOne({ username }).populate('expenses');
     },
-    budgets: async (parent, { username }) => {
+    expenses: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Budget.find(params).sort({ createdAt: -1 });
+      return Expense.find(params).sort({ createdAt: -1 });
     },
-    budget: async (parent, { budgetId }) => {
-      return Budget.findOne({ _id: budgetId });
-    },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('budgets');
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    expense: async (parent, { expenseId }) => {
+      return Expense.findOne({ _id: expenseId });
     },
   },
 
@@ -48,40 +42,38 @@ const resolvers = {
 
       return { token, user };
     },
-    addBudget: async (parent, { budgetText }, context) => {
-      if (context.user) {
-        const budget = await Budget.create({
-          budgetText,
-          budgetAuthor: context.user.username,
-        });
+    addExpense: async (parent, { expenseValue, expenseAuthor }) => {
+      const expense = await Expense.create({ expenseValue, expenseAuthor });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { budgets: budget._id } }
-        );
+      await User.findOneAndUpdate(
+        { username: expenseAuthor },
+        { $addToSet: { expenses: expense._id } }
+      );
 
-        return budget;
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      return expense;
     },
-  
-    removeBudget: async (parent, { budgetId }, context) => {
-      if (context.user) {
-        const budget = await Budget.findOneAndDelete({
-          _id: budgetId,
-          budgetAuthor: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { budgets: budget._id } }
-        );
-
-        return budget;
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    addAmount: async (parent, { expenseId, amountValue, amountAuthor }) => {
+      return Expense.findOneAndUpdate(
+        { _id: expenseId },
+        {
+          $addToSet: { amounts: { amountValue, amountAuthor } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
     },
- 
+    removeExpense: async (parent, { expenseId }) => {
+      return Expense.findOneAndDelete({ _id: expenseId });
+    },
+    removeAmount: async (parent, { expenseId, amountId }) => {
+      return Expense.findOneAndUpdate(
+        { _id: expenseId },
+        { $pull: { amounts: { _id: amountId } } },
+        { new: true }
+      );
+    },
   },
 };
 

@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Header from './components/Header';
 import Profile from './pages/Profile';
+import SingleExpense from './pages/SingleExpense';
 
 
 
@@ -58,7 +59,9 @@ function App() {
             <Route exact path="/profiles/:username">
               <Profile />
             </Route>
-           
+            <Route exact path="/expenses/:expenseId">
+              <SingleExpense />
+            </Route>
           </div>
      
         </div>
