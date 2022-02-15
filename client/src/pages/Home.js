@@ -9,7 +9,10 @@ import Auth from '../utils/auth';
 import Display2 from "../components/Display2";
 import "./style.css";
 
-
+import FormControl from "react-bootstrap/FormControl";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 const Home = () => {
 
   if (Auth.loggedIn()) {
@@ -23,7 +26,7 @@ const Home = () => {
     <Display /> 
       
     </main>
-    </>
+ 
 
       <div className="loweringContent">
 
@@ -32,7 +35,7 @@ const Home = () => {
         {/* <BudgetInput />
        <BillsInput />
        <BillsList /> */}
-       <Display /> 
+  
       
        {/* </main> */}
       </>
@@ -41,7 +44,11 @@ const Home = () => {
     );
   } else {
     return (<>
-     MORE MONEY MORE PROBLEMS
+    
+    <Container>
+  <Row>
+    <Col xs={{ order: 'last' }}>First, but last</Col>
+    <Col xs>   MORE MONEY MORE PROBLEMS
         
         <br></br>
         Animation logo intro
@@ -63,7 +70,11 @@ const Home = () => {
             Login
           </Link>
         </li>
-      </ul>
+      </ul></Col>
+    <Col xs={{ order: 'first' }}>Third, but first</Col>
+  </Row>
+</Container>
+  
       </>
     );
   }
