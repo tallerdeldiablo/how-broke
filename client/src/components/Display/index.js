@@ -15,11 +15,11 @@ import ModalT from "../ModalT";
 export default function Display() {
     return (
     <>
-     <DisplayExpense/>
+     {/* <DisplayExpense/> */}
     <Display2/>
-//     <BudgetCard/>
-//     <br></br>
-//     <ProgressBars/>
+     <BudgetCard/>
+     <br></br>
+     <ProgressBars/>
 
 
     </>
