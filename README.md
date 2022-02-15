@@ -33,11 +33,11 @@ The MIT License is a permissive free software license originating at the Massach
 
 
 ## Deployed Site
-
+[Heroku](https://whispering-plains-73070.herokuapp.com/login)
 
 ## Contributors
 Ricardo Angulo
-* [GitHub](https://github.com/tallerdeldiablo)
+*https://whispering-plains-73070.herokuapp.com/login
 * ricoding404@gmail.com
 
 Mario Bruno

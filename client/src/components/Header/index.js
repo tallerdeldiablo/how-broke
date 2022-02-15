@@ -8,8 +8,11 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import "./style.css";
+
 
 import Auth from "../../utils/auth";
 
@@ -19,44 +22,10 @@ const Header = () => {
     Auth.logout();
   };
   return (
+    <>  
+
     //took bg-primary out of className
 
-    <header className="text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
-          <Link className="text-light" to="/">
-          <img src={logo} alt="logo" />
-          
-          </Link>
-     
-        </div>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/home">
-                {Auth.getProfile().data.username}'s Budget
-              </Link>
-              {/* Testing out Bill/Receipt page lines 30-33 -Mario */}
-              <Link className="btn btn-lg btn-info m-2" to="/receipt">
-                {Auth.getProfile().data.username}'s Bills
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
 
     //fixed="top" in className to fix bar on top T*
     <Navbar className="bgcolor"  expand={false}>
@@ -90,50 +59,43 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
+    
+            
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-    // <header className="text-light mb-4 py-3 flex-row align-center">
-    //   <div className="container flex-row justify-space-between-lg justify-center align-center">
-    //     <div>
-    //       <Link className="text-light" to="/">
-    //       <img src={logo} alt="logo" />
+    <Container>
 
-    //       </Link>
-
-    //     </div>
-    //     <div>
-    //       {Auth.loggedIn() ? (
-    //         <>
-    //           <Link className="btn btn-lg btn-info m-2" to="/me">
-    //             {Auth.getProfile().data.username}'s Budget
-    //           </Link>
-    //           <button className="btn btn-lg btn-light m-2" onClick={logout}>
-    //             Logout
-    //           </button>
-    //         </>
-    //       ) : (
-    //         <>
-    //           <Link className="btn btn-lg btn-info m-2" to="/login">
-    //             Login
-    //           </Link>
-    //           <Link className="btn btn-lg btn-light m-2" to="/signup">
-    //             Signup
-    //           </Link>
-    //         </>
-    //       )}
-    //     </div>
-    //   </div>
-    // </header>
+  <Row>
+    <Col></Col>
+    <Col xs={3}>   <div>
+          {Auth.loggedIn() ? (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/me">
+                {Auth.getProfile().data.username}'s Budget
+              </Link>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-lg btn-info m-2" to="/login">
+                Login
+              </Link>
+              <Link className="btn btn-lg btn-light m-2" to="/signup">
+                Signup
+              </Link>
+            </>
+          )}
+        </div></Col>
+    <Col></Col>
+  </Row>
+</Container>
+ 
+</>
 
   );
 };

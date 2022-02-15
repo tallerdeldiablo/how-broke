@@ -66,7 +66,7 @@ function App() {
             {/* Testing route/button to bills/receipt lines 62-64 -Mario */}
             <Route exact path="/receipt">
               <Receipt />
-
+              </Route>
             <Route exact path="/expenses/:expenseId">
               <SingleExpense />
 
