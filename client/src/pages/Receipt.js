@@ -4,6 +4,7 @@ import BillsInput from "../components/BillsInput";
 import BillsList from "../components/BillsList";
 import BudgetInput from "../components/BudgetInput";
 import { Link } from 'react-router-dom';
+import Home from './Home';
 
 const Receipt = () => {
     if (Auth.loggedIn()) {
@@ -14,31 +15,8 @@ const Receipt = () => {
             </div>
         )
     } else {
-        return (<>
-            MORE MONEY MORE PROBLEMS
-               
-               <br></br>
-               Animation logo intro
-               <br></br>
-               Loading
-               <br></br>
-             <ul className="flex-row">
-       
-              
-       
-       
-               <li>
-                 <Link to="/signup">
-                   Signup
-                 </Link>
-               </li>
-               <li className="mx-1">
-                 <Link to="/login">
-                   Login
-                 </Link>
-               </li>
-             </ul>
-             </>
+        return (
+            <Home />
            );
     }
 }
