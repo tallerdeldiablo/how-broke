@@ -15,15 +15,15 @@ import Modal from 'react-bootstrap/Modal'
 export default function Display() {
     return (
     <>
-
-     <DisplayPlus/>
+     {/* <DisplayExpense/> */}
     <Display2/>
-
-     <DisplayExpense/>
-
      <BudgetCard/>
      <br></br>
      <ProgressBars/>
+
+     <DisplayPlus/>
+
+     <DisplayExpense/>
     </>
     )
 };

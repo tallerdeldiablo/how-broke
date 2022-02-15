@@ -6,6 +6,7 @@ import { ADD_EXPENSE } from '../../utils/mutations';
 import { QUERY_EXPENSES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
+import './style.css';
 
 const ExpenseForm = () => {
   const [expenseValue, setExpenseText] = useState('');
@@ -55,7 +56,7 @@ const ExpenseForm = () => {
 
   return (
     <div>
-      <h3>ADD A NEW EXPENSE</h3>
+      <h3 className="ExpenseInput">ADD A NEW EXPENSE</h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -67,7 +68,7 @@ const ExpenseForm = () => {
       
           </p>
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+            className="form"
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
