@@ -9,5 +9,3 @@ export const TOGGLE_CART = "TOGGLE_CART";
 
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 export const UPDATE_CURRENT_CATEGORY = "UPDATE_CURRENT_CATEGORY";
-
-// export const ADD_BILL = "ADD_BILL";
