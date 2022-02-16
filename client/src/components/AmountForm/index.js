@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
 import { ADD_AMOUNT } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
+import './style.css'
 
 const AmountForm = ({ expenseId }) => {
   const [amountValue, setAmountValue] = useState('');
@@ -40,8 +39,9 @@ const AmountForm = ({ expenseId }) => {
   };
 
   return (
-    <div>
-      <h4>What are your expenses on this expense?</h4>
+    <div id="test-expense">
+    <div id="expense-amount-container">
+      <h4>What is the amount this expense?</h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -81,6 +81,7 @@ const AmountForm = ({ expenseId }) => {
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
+    </div>
     </div>
   );
 };
