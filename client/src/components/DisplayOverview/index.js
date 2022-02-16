@@ -11,7 +11,7 @@ import Auth from '../../utils/auth';
 // import { QUERY_ALL_BUDGETS } from '../../utils/queries';
 import './style.css';
 
-export default function Display2({ budget}) {
+export default function Display2() {
 
     // const { loading, data } = useQuery(QUERY_ALL_BUDGETS);
 
@@ -27,8 +27,7 @@ export default function Display2({ budget}) {
             <h1>Financial Overview</h1>
           </div>
           <div>
-       
-            <h3>Monthly Income:{budget}</h3>
+            <h3>Monthly Income: $6,000</h3>
           </div>
           <br></br>
 
@@ -43,11 +42,7 @@ export default function Display2({ budget}) {
             <ul>Other: $700 <img src="https://img.icons8.com/color/40/000000/money-transfer.png"/></ul>
 
           </div>
-          <ProgressBar className="rounded-pill">
-  <ProgressBar striped variant="success" now={35} key={1} />
-  <ProgressBar variant="warning" now={25} key={2} />
-  <ProgressBar striped variant="danger" now={20} key={3} />
-</ProgressBar>
+
         </div>
       </div>
       <br></br>

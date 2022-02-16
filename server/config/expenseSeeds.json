@@ -1,15 +1,29 @@
 [
   {
-    "expenseValue": "0",
-    "expenseAuthor": "Home"
+    "expenseValue": "80",
+    "expenseAuthor": "Other"
   },
 
   {
-    "expenseValue": "0",
-    "expenseAuthor": "Food"
+    "expenseValue": "20",
+    "expenseAuthor": "Entreteinment"
   },
   {
-    "expenseValue": "0",
-    "expenseAuthor": "Phone"
-  }
+    "expenseValue": "30",
+    "expenseAuthor": "Food"
+  },
+
+{
+  "expenseValue": "10",
+  "expenseAuthor": "Transportation"
+},
+{
+  "expenseValue": "70",
+  "expenseAuthor": "Phone"
+}
+,
+{
+  "expenseValue": "2000",
+  "expenseAuthor": "Home"
+}
 ]
