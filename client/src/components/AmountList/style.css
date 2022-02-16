@@ -1,0 +1,15 @@
+#amount-header {
+    background-color: purple;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  #amounted {
+    background-color: royalblue;  
+    border-radius: 5px;
+}
+
+#amounted-card {
+    background: rgba(0, 0, 0, 0.856);
+    border-radius: 5px;
+}

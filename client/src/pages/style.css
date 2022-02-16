@@ -42,3 +42,10 @@
 .card-body p {
   color: black;
 }
+
+#expense-display-title {
+background-color: tomato;
+border-radius: 5px;
+padding: 2%;
+text-align: center;
+}
