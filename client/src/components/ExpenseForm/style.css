@@ -11,8 +11,12 @@
   }
 
   #expense-form {
-    background-color: purple;
+    background-color: rgb(11, 179, 140);
       border-radius: 50px;
       padding: 2%;
       margin-top: 200px;
+  }
+
+  .btn {
+      background-color: sandybrown;
   }
