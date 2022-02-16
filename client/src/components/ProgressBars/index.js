@@ -88,7 +88,7 @@ export default function ProgressBars() {
 <br></br>
 
 <div>
-<img src="https://img.icons8.com/color/48/000000/marijuana-leaf.png"/>
+<img src="https://img.icons8.com/color/48/000000/money-transfer.png"/>
 <h3 className="d-flex justify-content-between fw-normal">Other
 <p>-$225</p>
 </h3>

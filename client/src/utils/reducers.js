@@ -9,6 +9,7 @@ import {
   UPDATE_CURRENT_CATEGORY,
   CLEAR_CART,
   TOGGLE_CART,
+  ADD_BILL
 } from './actions';
 
 // The reducer is a function that accepts the current state and an action. It returns a new state based on that action.

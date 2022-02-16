@@ -14,7 +14,6 @@ const ExpenseList = ({ expenses, title }) => {
         expenses.map((expense) => (
           <div key={expense._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
-              {expense.expenseAuthor} <br />
               <span style={{ fontSize: '1rem' }}>
                        </span>
             </h4>
