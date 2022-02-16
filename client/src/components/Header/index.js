@@ -28,7 +28,7 @@ const Header = () => {
   };
   if (Auth.loggedIn()){
   return (
-    <Navbar className="bgcolor" expand={false}> 
+    <Navbar className="bgcolor" fixed="top" expand={false}> 
 
      <Container fluid>
         <Navbar.Brand href="#"></Navbar.Brand>
