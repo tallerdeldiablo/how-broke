@@ -46,9 +46,11 @@ const Home = () => {
 
     );
   } else {
-    return (<>
+    return (
     
-    <Container>
+  <> 
+
+<div className="containercomp"> 
   {/* <Row>
     <Col xs={{ order: 'last' }}> First</Col>
     <Col xs>   Mo Money */}
@@ -75,9 +77,10 @@ const Home = () => {
   {/* </Row> */}
 
   <img src={money} id="michael" alt="money" />
-</Container>
+</div>
+</>
   
-      </>
+   
     );
   }
 
