@@ -17,7 +17,7 @@ const ExpenseList = ({ expenses, title }) => {
               <span style={{ fontSize: '1rem' }}>
                        </span>
             </h4>
-            <div className="card-body">
+            <div className="card-b">
               <p>{expense.expenseValue}</p>
             </div>
             <Link

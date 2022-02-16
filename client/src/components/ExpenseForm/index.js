@@ -68,10 +68,10 @@ const ExpenseForm = () => {
       
           </p>
           <form
-            className="form"
+            className="abcd"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
+            <div className="col-12 col-lg-9" id="forminput">
               <textarea
                 name="expenseValue"
                 placeholder="Add a new expense..."
@@ -80,11 +80,9 @@ const ExpenseForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
-         
             </div>
-
             <div className="col-12 col-lg-3">
-              <button className="btn btn-block py-3" type="submit">
+              <button className="btn btn-primary btn-block py-3" type="submit">
                 Add Expense
               </button>
             </div>
