@@ -17,9 +17,6 @@ export const QUERY_ME = gql`
   }
 `;
 
-
-
-
 export const QUERY_THOUGHTS = gql`
   query getThoughts {
     budgets {
@@ -63,6 +60,7 @@ export const QUERY_EXPENSES = gql`
     }
   }
 `;
+
 export const QUERY_SINGLE_Expense = gql`
   query getSingleExpense($expenseId: ID!) {
     expense(expenseId: $expenseId) {
