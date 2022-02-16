@@ -24,6 +24,7 @@ const ExpenseList = ({ expenses, title }) => {
               className="btn btn-primary btn-block btn-squared"
               to={`/expenses/${expense._id}`}
             >
+              <img src="https://img.icons8.com/color-glass/25/000000/enter-2.png"/>
             </Link>
           </div>
         ))}
