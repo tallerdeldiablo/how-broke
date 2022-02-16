@@ -1090,7 +1090,7 @@ a:hover {
   background-color: #31a9e1;
 }
 
-.card {
+/* .card {
   border: 1px solid #1a1a1a;
   margin-bottom: 1rem;
 }
@@ -1116,7 +1116,7 @@ a:hover {
 
 .card.card-rounded .card-header {
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-}
+} */
 
 form {
   width: 100%;

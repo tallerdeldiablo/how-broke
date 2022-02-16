@@ -1,6 +1,17 @@
 import React from "react";
 import "./style.css";
 
+// import ADD_BILL from "../../utils/queries"
+
+
+// const handleFormSubmit = async (event) => {
+//     event.preventDefault()
+//     const form = event.currentTarget;
+//     try {
+//         const ADD_BILL = ADD_BILL
+//     }
+// };
+
 export default function FincanceInput() {
     return (
         <section id="finances-input">

@@ -76,3 +76,13 @@ export const QUERY_SINGLE_Expense = gql`
     }
   }
 `;
+
+// export const ADD_BILL = gql`
+//   query getBill($expenseID: [ID!]) {
+//     expense(expenseId: $expenseId) {
+//       bill_group
+//       bill_name
+//       bill_amount
+//     }
+//   }
+// `;
