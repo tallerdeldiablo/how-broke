@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 const ExpenseList = ({ expenses, title }) => {
   if (!expenses.length) {
@@ -7,7 +8,7 @@ const ExpenseList = ({ expenses, title }) => {
   }
 
   return (
-    <div>
+    <div id="expense-list">
       <h3>{title}</h3>
       {expenses &&
         expenses.map((expense) => (
@@ -24,7 +25,6 @@ const ExpenseList = ({ expenses, title }) => {
               className="btn btn-primary btn-block btn-squared"
               to={`/expenses/${expense._id}`}
             >
-            💰
             </Link>
           </div>
         ))}

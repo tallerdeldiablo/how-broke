@@ -26,85 +26,8 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+  if (Auth.loggedIn()){
   return (
-// <<<<<<< Mstyling
-//     <>
-
-
-//       <Navbar className="bgcolor" expand={false}>
-//         <Container fluid>
-//           <Navbar.Brand href="#"></Navbar.Brand>
-//           <img src={logo} alt="logo" />
-//           <Navbar.Toggle aria-controls="offcanvasNavbar" />
-//           <Navbar.Offcanvas
-//             id="offcanvasNavbar"
-//             aria-labelledby="offcanvasNavbarLabel"
-//             placement="end"
-//           >
-//             <Offcanvas.Header closeButton>
-//               <Offcanvas.Title id="offcanvasNavbarLabel">
-//                 Offcanvas
-//               </Offcanvas.Title>
-//             </Offcanvas.Header>
-//             <Offcanvas.Body>
-//               <Nav className="justify-content-end flex-grow-1 pe-3">
-//                 <Nav.Link href="#action1">Edit Budget</Nav.Link>
-//                 <Nav.Link href="#action2">Edit Expenses</Nav.Link>
-//                 <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-//                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-//                   <NavDropdown.Item href="#action4">
-//                     Another action
-//                   </NavDropdown.Item>
-//                   <NavDropdown.Divider />
-//                   <NavDropdown.Item href="#action5">
-//                     Something else here
-//                   </NavDropdown.Item>
-//                 </NavDropdown>
-//               </Nav>
-//               <Form className="d-flex">
-
-
-//               </Form>
-//             </Offcanvas.Body>
-//           </Navbar.Offcanvas>
-//         </Container>
-//       </Navbar>
-//       <Container>
-
-//         <Row>
-//           <Col></Col>
-//           <Col xs={3}>   <div>
-//             {Auth.loggedIn() ? (
-//               <>
-//                 <Link className="btn btn-lg btn-info m-2" to="/home">
-//                   {Auth.getProfile().data.username}'s Budget
-//                 </Link>
-//                 <Link className="btn btn-lg btn-info m-2" to="/receipt">
-//                   {Auth.getProfile().data.username}'s Bills
-//                 </Link>
-//                 <button className="btn btn-lg btn-light m-2" onClick={logout}>
-//                   Logout
-//                 </button>
-//               </>
-//             ) : (
-//               <>
-//                 <Link className="btn btn-lg btn-info m-2" to="/login">
-//                   Login
-//                 </Link>
-//                 <Link className="btn btn-lg btn-light m-2" to="/signup">
-//                   Signup
-//                 </Link>
-//               </>
-//             )}
-//           </div></Col>
-//           <Col></Col>
-//         </Row>
-//       </Container>
-
-//     </>
-//   =======
-    //took bg-primary out of className
-    //fixed="top" in className to fix bar on top T*
     <Navbar className="bgcolor" expand={false}> 
 
      <Container fluid>
@@ -118,19 +41,14 @@ const Header = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel">
-              Mo' Money Mo' Problems
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-T2
-          <section id="finances-input">
+          {/* <section id="finances-input">
             <h3>Update Budget</h3>
             <div className="secondary-container">
             <input type="text" id="budget-amount" name="budget-amount" placeholder="Budget" />
             <button id="budget-button" className="button">
-                {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg> */}
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-currency-dollar" viewBox="0 0 16 16">
   <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
 </svg>
@@ -153,66 +71,52 @@ T2
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                   </svg></button>
             </div>
-        </section>
+        </section> */}
 
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#action1">Edit Budget</Nav.Link>
-              <Nav.Link href="#action2">Edit Expenses</Nav.Link>
-              <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
+            <Link to="/home">{Auth.getProfile().data.username}'s Budget</Link>
+              <Link to="/receipt">{Auth.getProfile().data.username}'s Bills</Link>
+              <Link to="/logout" onClick={logout}>
+                Logout
+              </Link>
             </Nav>
             <Form className="d-flex">
-    
-            
             </Form>
-
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
-    
-    <Container>
-
-  <Row>
-    <Col></Col>
-    <Col xs={3}>   <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/home">
-                {Auth.getProfile().data.username}'s Budget
-              </Link>
-              <Link className="btn btn-lg btn-info m-2" to="/receipt">
-                {Auth.getProfile().data.username}'s Bills
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div></Col>
-    <Col></Col>
-  </Row>
-</Container>
 </Navbar>
+  )
+} else {
+  return (
+    <Navbar className="bgcolor" expand={false}> 
 
-
-  );
-};
+    <Container fluid>
+       <Navbar.Brand href="#"></Navbar.Brand>
+       <img src={logo} alt="logo" />
+       <Navbar.Toggle aria-controls="offcanvasNavbar" />
+       <Navbar.Offcanvas className="pullout"
+         id="offcanvasNavbar"
+         aria-labelledby="offcanvasNavbarLabel"
+         placement="end"
+       >
+         <Offcanvas.Header closeButton>
+           <Offcanvas.Title id="offcanvasNavbarLabel">
+           </Offcanvas.Title>
+         </Offcanvas.Header>
+         <Offcanvas.Body>
+           <Nav className="justify-content-end flex-grow-1 pe-3">
+           <Link to="/login">Login</Link>
+             <Link to="/signup">Signup</Link>
+           </Nav>
+           <Form className="d-flex">
+           </Form>
+         </Offcanvas.Body>
+       </Navbar.Offcanvas>
+     </Container>
+</Navbar>
+  )
+}
+}
 
 export default Header;

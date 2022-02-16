@@ -10,7 +10,6 @@ const Home = () => {
     return (
       <>
         <main>
-          <h2 id="greeting">Hello, {Auth.getProfile().data.username}!</h2>
           <Display />
 
         </main>
