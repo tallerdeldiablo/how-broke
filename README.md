@@ -24,29 +24,30 @@ THEN my session is cleared and I'm returned to the login page
 * Javascipt
 * Mongoose
 * GraphQL
+* Apollo
 * React
 
 ## License
 The MIT License is a permissive free software license originating at the Massachusetts Institute of Technology (MIT) in the late 1980s. As a permissive license, it puts only very limited restriction on reuse and has, therefore, high license compatibility.
 
 ## Screenshots
-
+![screenshot](./client/src/assets/screenshot1.png)
+![screenshot](./client/src/assets/screenshot2.png)
+![screenshot](./client/src/assets/screenshot3.png)
+![screenshot](./client/src/assets/screenshot4.png)
+![screenshot](./client/src/assets/screenshot5.png)
 
 ## Deployed Site
 [Heroku](https://whispering-plains-73070.herokuapp.com/login)
 
 ## Contributors
 Ricardo Angulo
-*https://whispering-plains-73070.herokuapp.com/login
+* [GitHub](https://github.com/tallerdeldiablo)
 * ricoding404@gmail.com
 
 Mario Bruno
 * [GitHub](https://github.com/MBrunoStem)
 * mbrunostem@gmail.com
-
-Evan Allen
-* [GitHub](https://github.com/Atalien145)
-* etalle5627@gmail.com
 
 Tanim Iqbal
 * [GitHub](https://github.com/tanim-iqbal)
