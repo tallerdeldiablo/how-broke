@@ -1,0 +1,10 @@
+#expense-list {
+    background: rgba(0, 0, 0, 0.692);
+    border-radius: 5px;
+    padding: 2%;
+    color: black;
+}
+
+#expense-list h3 {
+    color: white;
+}

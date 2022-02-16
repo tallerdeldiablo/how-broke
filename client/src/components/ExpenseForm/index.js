@@ -55,7 +55,7 @@ const ExpenseForm = () => {
   };
 
   return (
-    <div>
+    <div id="expense-form">
       <h3 className="ExpenseInput">ADD A NEW EXPENSE</h3>
 
       {Auth.loggedIn() ? (

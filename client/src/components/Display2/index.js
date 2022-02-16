@@ -6,6 +6,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Auth from '../../utils/auth';
 
 // import { QUERY_ALL_BUDGETS } from '../../utils/queries';
 import './style.css';
@@ -22,6 +23,7 @@ export default function Display2() {
 <>
       <div className="overview-container">
         <div>
+        <h2 id="greeting">Hello, {Auth.getProfile().data.username}!</h2>
             <h1>Financial Overview</h1>
           </div>
           <div>
