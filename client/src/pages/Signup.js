@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
+import "./style.css";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -42,7 +43,7 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="new-card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <h4 className="signup-header text-light p-2">Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -50,6 +51,7 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              <div class="form animated flipInX">
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -82,7 +84,7 @@ const Signup = () => {
                 >
                   Submit
                 </button>
-              </form>
+              </form>  </div>
             )}
 
             {error && (

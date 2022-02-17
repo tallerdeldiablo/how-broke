@@ -29,7 +29,7 @@
 .new-card {
   position: fixed;
   width: 500px;
-  height: 220px;
+  height: 240px;
   padding: 10px;
   border: 3px solid #147d43;
   background-color: #d4fce6;
@@ -49,3 +49,72 @@ border-radius: 5px;
 padding: 2%;
 text-align: center;
 }
+
+.login-header {
+    background-color:rgb(240, 173, 28);
+}
+
+.signup-header {
+    background-color:rgb(240, 173, 28);
+}
+
+/* #submitbtn {
+    background-color: salmon;
+} */
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    width: 285px;
+    margin: -140px 0 0 -182px;
+    padding: 40px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+  .form h2 {
+    margin: 0 0 20px;
+    line-height: 1;
+    color: #44C4E7;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .form input {
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    color: #ccc;
+    font-family: "Roboto";
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    -ms-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
+    transition: 0.2s linear;
+  }
+  .form input:focus {
+    color: #333;
+    border: 1px solid #44C4E7;
+  }
+  .form button {
+    cursor: pointer;
+    background: #44C4E7;
+    width: 100%;
+    padding: 10px 15px;
+    border: 0;
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .form button:hover {
+    background: #369CB8;
+  }
