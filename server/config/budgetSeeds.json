@@ -1,0 +1,15 @@
+[
+  {
+    "expenseValue": "60",
+    "expenseAuthor": "Home"
+  },
+
+  {
+    "expenseValue": "60",
+    "expenseAuthor": "Food"
+  },
+  {
+    "expenseValue": "20",
+    "expenseAuthor": "Phone"
+  }
+]
