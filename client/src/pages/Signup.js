@@ -51,6 +51,7 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
+              <div class="form animated flipInX">
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
@@ -83,7 +84,7 @@ const Signup = () => {
                 >
                   Submit
                 </button>
-              </form>
+              </form>  </div>
             )}
 
             {error && (
