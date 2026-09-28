@@ -23,7 +23,7 @@ const DisplayBarsExpense = () => {
       <ExpenseForm onAdded={() => refetch()} />
       {loading ? <p>Loading expenses...</p> : error ? (
         <p role="alert">Couldn't load expenses. Please refresh the page.</p>
-      ) : <ExpenseBarList expenses={expenses} />}
+      ) : <ExpenseBarList expenses={expenses} onUpdated={() => refetch()} />}
     </section>
   );
 };

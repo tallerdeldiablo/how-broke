@@ -70,6 +70,19 @@ const resolvers = {
 
       return expense;
     },
+    updateExpenseAmount: async (parent, { expenseId, amount }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(amount) || amount <= 0) {
+        throw new Error('Enter an amount greater than zero');
+      }
+      const expense = await Expense.findOneAndUpdate(
+        { _id: expenseId, expenseAuthor: context.user.username },
+        { $set: { amount } },
+        { new: true, runValidators: true }
+      );
+      if (!expense) throw new Error('Expense not found');
+      return expense;
+    },
     addAmount: async (parent, { expenseId, amountValue, amountAuthor }) => {
       return Expense.findOneAndUpdate(
         { _id: expenseId },

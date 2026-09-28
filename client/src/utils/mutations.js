@@ -49,6 +49,15 @@ export const ADD_EXPENSE = gql`
   }
 `;
 
+export const UPDATE_EXPENSE_AMOUNT = gql`
+  mutation updateExpenseAmount($expenseId: ID!, $amount: Float!) {
+    updateExpenseAmount(expenseId: $expenseId, amount: $amount) {
+      _id
+      amount
+    }
+  }
+`;
+
 export const ADD_AMOUNT = gql`
   mutation addAmount(
     $expenseId: ID!

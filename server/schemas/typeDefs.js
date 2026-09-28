@@ -68,6 +68,7 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addExpense(expenseValue: String!, expenseAuthor: String!, amount: Float): Expense
+  updateExpenseAmount(expenseId: ID!, amount: Float!): Expense
   addAmount(
     expenseId: ID!
     amountValue: String!

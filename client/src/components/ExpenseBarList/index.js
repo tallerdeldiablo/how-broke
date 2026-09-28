@@ -1,20 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { getExpenseAmount, formatMoney } from '../../utils/expenseAmount';
+import { UPDATE_EXPENSE_AMOUNT } from '../../utils/mutations';
 import './style.css';
 
-const ExpenseBarList = ({ expenses = [] }) => {
+const ExpenseItem = ({ expense, onUpdated }) => {
+  const [editing, setEditing] = useState(false);
+  const [amount, setAmount] = useState('');
+  const [updateAmount, { loading, error }] = useMutation(UPDATE_EXPENSE_AMOUNT);
+  const currentAmount = getExpenseAmount(expense);
+
+  const save = async (event) => {
+    event.preventDefault();
+    if (!Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
+    try {
+      await updateAmount({ variables: { expenseId: expense._id, amount: Number(amount) } });
+      await onUpdated();
+      setEditing(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <li className="expense-item">
+      <span>{expense.expenseValue}</span>
+      {editing ? (
+        <form className="expense-edit" onSubmit={save}>
+          <input aria-label={`Amount for ${expense.expenseValue}`} type="number" min="0.01" step="0.01"
+            value={amount} onChange={(event) => setAmount(event.target.value)} required autoFocus />
+          <button type="submit" disabled={loading || !(Number(amount) > 0)}>{loading ? 'Saving...' : 'Save'}</button>
+          <button type="button" onClick={() => setEditing(false)} disabled={loading}>Cancel</button>
+          {error && <small role="alert">Couldn't save. Try again.</small>}
+        </form>
+      ) : (
+        <div className="expense-item-actions">
+          <strong>{currentAmount === null ? 'Amount pending' : formatMoney(currentAmount)}</strong>
+          <button type="button" onClick={() => { setAmount(currentAmount == null ? '' : String(currentAmount)); setEditing(true); }}>
+            Edit
+          </button>
+        </div>
+      )}
+    </li>
+  );
+};
+
+const ExpenseBarList = ({ expenses = [], onUpdated }) => {
   if (!expenses.length) {
     return <p className="expense-empty">No expenses yet. Add your first one above.</p>;
   }
 
   return (
     <ul className="expense-items">
-      {expenses.map((expense) => (
-        <li className="expense-item" key={expense._id}>
-          <span>{expense.expenseValue}</span>
-          <strong>{getExpenseAmount(expense) === null ? 'Amount pending' : formatMoney(getExpenseAmount(expense))}</strong>
-        </li>
-      ))}
+      {expenses.map((expense) => <ExpenseItem key={expense._id} expense={expense} onUpdated={onUpdated} />)}
     </ul>
   );
 };
