@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { getExpenseAmount, formatMoney } from '../../utils/expenseAmount';
-import { UPDATE_EXPENSE_AMOUNT } from '../../utils/mutations';
+import { UPDATE_EXPENSE_AMOUNT, REMOVE_EXPENSE } from '../../utils/mutations';
 import './style.css';
 
 const ExpenseItem = ({ expense, onUpdated }) => {
   const [editing, setEditing] = useState(false);
   const [amount, setAmount] = useState('');
   const [updateAmount, { loading, error }] = useMutation(UPDATE_EXPENSE_AMOUNT);
+  const [removeExpense, { loading: deleting, error: deleteError }] = useMutation(REMOVE_EXPENSE);
   const currentAmount = getExpenseAmount(expense);
 
   const save = async (event) => {
@@ -17,6 +18,16 @@ const ExpenseItem = ({ expense, onUpdated }) => {
       await updateAmount({ variables: { expenseId: expense._id, amount: Number(amount) } });
       await onUpdated();
       setEditing(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm(`Delete "${expense.expenseValue}"? This cannot be undone.`)) return;
+    try {
+      await removeExpense({ variables: { expenseId: expense._id } });
+      await onUpdated();
     } catch (err) {
       console.error(err);
     }
@@ -39,6 +50,10 @@ const ExpenseItem = ({ expense, onUpdated }) => {
           <button type="button" onClick={() => { setAmount(currentAmount == null ? '' : String(currentAmount)); setEditing(true); }}>
             Edit
           </button>
+          <button type="button" className="expense-delete" onClick={handleDelete} disabled={deleting}>
+            {deleting ? 'Deleting...' : 'Delete'}
+          </button>
+          {deleteError && <small role="alert">Couldn't delete. Try again.</small>}
         </div>
       )}
     </li>

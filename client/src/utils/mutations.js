@@ -67,6 +67,14 @@ export const UPDATE_EXPENSE_AMOUNT = gql`
   }
 `;
 
+export const REMOVE_EXPENSE = gql`
+  mutation removeExpense($expenseId: ID!) {
+    removeExpense(expenseId: $expenseId) {
+      _id
+    }
+  }
+`;
+
 export const ADD_AMOUNT = gql`
   mutation addAmount(
     $expenseId: ID!

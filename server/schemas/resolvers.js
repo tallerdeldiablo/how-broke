@@ -106,8 +106,14 @@ const resolvers = {
         }
       );
     },
-    removeExpense: async (parent, { expenseId }) => {
-      return Expense.findOneAndDelete({ _id: expenseId });
+    removeExpense: async (parent, { expenseId }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      const expense = await Expense.findOneAndDelete({
+        _id: expenseId,
+        expenseAuthor: context.user.username,
+      });
+      if (!expense) throw new Error('Expense not found');
+      return expense;
     },
     removeAmount: async (parent, { expenseId, amountId }) => {
       return Expense.findOneAndUpdate(
