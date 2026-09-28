@@ -11,7 +11,7 @@ const resolvers = {
       return User.findOne({ username }).populate('expenses');
     },
     expenses: async (parent, { username }) => {
-      const params = username ? { username } : {};
+      const params = username ? { expenseAuthor: username } : {};
       return Expense.find(params).sort({ createdAt: -1 });
     },
     expense: async (parent, { expenseId }) => {
@@ -42,8 +42,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addExpense: async (parent, { expenseValue, expenseAuthor }) => {
-      const expense = await Expense.create({ expenseValue, expenseAuthor });
+    addExpense: async (parent, { expenseValue, expenseAuthor, amount }) => {
+      if (amount != null && (!Number.isFinite(amount) || amount <= 0)) {
+        throw new Error('Enter an amount greater than zero');
+      }
+      const expense = await Expense.create({ expenseValue, expenseAuthor, amount });
 
       await User.findOneAndUpdate(
         { username: expenseAuthor },

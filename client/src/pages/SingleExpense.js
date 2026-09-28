@@ -14,7 +14,7 @@ const SingleExpense = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { expenseId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_SINGLE_Expense, {
+  const { loading, error, data } = useQuery(QUERY_SINGLE_Expense, {
     // pass URL parameter
     variables: { expenseId: expenseId },
   });
@@ -26,6 +26,9 @@ const SingleExpense = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+  if (error || !data?.expense) {
+    return <p>This expense could not be found.</p>;
   }
   return (
     // <div className="">

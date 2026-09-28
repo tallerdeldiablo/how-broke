@@ -75,7 +75,7 @@ const Header = () => {
 
             <Nav className="justify-content-end flex-grow-1 pe-3">
             <Link to="/home">{Auth.getProfile().data.username}'s Budget</Link>
-              <Link to="/receipt">{Auth.getProfile().data.username}'s Bills</Link>
+              <Link to="/receipt">Expenses</Link>
               <Link to="/logout" onClick={logout}>
                 Logout
               </Link>

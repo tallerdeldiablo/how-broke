@@ -1,26 +1,9 @@
-.ExpenseInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  #expense-form {
-    background-color: rgb(11, 179, 140);
-      border-radius: 10px;
-      padding: 2%;
-      margin-top: 200px;
-  }
-
-  .btn {
-      background-color: sandybrown;
-  }
-
-  #listofitems {
-      margin-top: 10px;
-  }
+.expense-entry { margin: 0 0 1.5rem; }
+.expense-entry label { display: block; font-weight: 600; margin-bottom: .5rem; }
+.expense-entry-row { display: flex; gap: .75rem; }
+.expense-entry-row input { flex: 1; min-width: 0; padding: .75rem 1rem; border: 1px solid #a9c3c5; border-radius: 8px; color: #173840; background: #fff; }
+.expense-entry-row input[type="number"] { flex: 0 1 150px; }
+.expense-entry-row button { border: 0; border-radius: 8px; background: #138c78; color: white; padding: .75rem 1.25rem; font-weight: 600; }
+.expense-entry-row button:disabled { opacity: .6; cursor: not-allowed; }
+.expense-error { color: #a32222; margin: .5rem 0; }
+@media (max-width: 600px) { .expense-entry-row { flex-direction: column; } .expense-entry-row input[type="number"] { flex: auto; } }

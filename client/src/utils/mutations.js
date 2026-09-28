@@ -25,10 +25,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EXPENSE = gql`
-  mutation addExpense($expenseValue: String!, $expenseAuthor: String!) {
-    addExpense(expenseValue: $expenseValue, expenseAuthor: $expenseAuthor) {
+  mutation addExpense($expenseValue: String!, $expenseAuthor: String!, $amount: Float) {
+    addExpense(expenseValue: $expenseValue, expenseAuthor: $expenseAuthor, amount: $amount) {
       _id
       expenseValue
+      amount
       expenseAuthor
       createdAt
       amounts {

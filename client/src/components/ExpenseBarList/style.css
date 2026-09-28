@@ -1,6 +1,5 @@
-.progressComponent {
-    margin-top: 20px;
-    background: rgba(0, 0, 0, 0.692);
-    border-radius: 5px;
-    padding: 2%;
-}
+.expense-items { list-style: none; padding: 0; margin: 0; }
+.expense-item { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid #d9e8e8; overflow-wrap: anywhere; }
+.expense-item small { color: #52666a; flex-shrink: 0; }
+.expense-empty { color: #52666a; margin: 1rem 0 0; }
+@media (max-width: 600px) { .expense-item { flex-direction: column; gap: .25rem; } }

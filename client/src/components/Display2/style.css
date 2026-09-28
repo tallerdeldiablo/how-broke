@@ -1,27 +1,5 @@
-.divanimation {
-  width: 50px;
-  height: 50px;
-  background-color: rgb(30, 255, 0);
-  animation-name: example;
-  animation-duration: 6s;
-}
-
-@keyframes example {
-  from {background-color: rgb(123, 255, 0);}
-  to {background-color:  red;}
-}
-
-
-.overview-container {
-  margin-top:200px;
-  margin-bottom: 50px;
-  /* margin: 20px; */
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.692);
-  border-radius: 5px;
-  padding: 2%;
-}
+.overview-container { max-width: 860px; margin: 8rem auto 0; padding: 2rem; color: #fff; background: rgba(1, 39, 55, .84); border-radius: 16px; }
+.overview-container p { margin: 0 0 .5rem; font-size: 1rem; }
+.overview-container h1 { margin: 0 0 .5rem; font-size: clamp(1.75rem, 4vw, 2.75rem); }
+.overview-container span { color: #d4e8e9; }
+@media (max-width: 600px) { .overview-container { margin-top: 5rem; padding: 1.5rem; } }

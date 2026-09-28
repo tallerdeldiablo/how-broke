@@ -1,40 +1,31 @@
-import React from "react";
+import React from 'react';
 import { useQuery } from '@apollo/client';
-
-import ExpenseBarsList from '../ExpenseBarList';
+import ExpenseBarList from '../ExpenseBarList';
 import ExpenseForm from '../ExpenseForm';
 import { QUERY_EXPENSES } from '../../utils/queries';
+import Auth from '../../utils/auth';
+import { getExpenseAmount, formatMoney } from '../../utils/expenseAmount';
 import './style.css';
 
-
-
-
-const DisplayExpense = () => {
-  const { loading, data } = useQuery(QUERY_EXPENSES);
+const DisplayBarsExpense = () => {
+  const { loading, error, data, refetch } = useQuery(QUERY_EXPENSES, {
+    variables: { username: Auth.getProfile().data.username },
+  });
   const expenses = data?.expenses || [];
+  const total = expenses.reduce((sum, expense) => sum + (getExpenseAmount(expense) || 0), 0);
 
   return (
-    <main>
-      <div className="Expenseform">
-        <div
-          className="col-12 col-md-10 mb-3 p-3"
-          // style={{ border: '1px dotted #1a1a1a' }}
-        >
-       
-        </div>
-        <div className="col-12 col-md-8 mb-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ExpenseBarsList
-              expenses={expenses}
-              title=""
-            />
-          )}
-        </div>
+    <section className="expense-panel" aria-labelledby="expenses-heading">
+      <div className="expense-panel-heading">
+        <h2 id="expenses-heading">Your expenses</h2>
+        <span>{loading ? 'Loading...' : `${expenses.length} items · ${formatMoney(total)}`}</span>
       </div>
-    </main>
+      <ExpenseForm onAdded={() => refetch()} />
+      {loading ? <p>Loading expenses...</p> : error ? (
+        <p role="alert">Couldn't load expenses. Please refresh the page.</p>
+      ) : <ExpenseBarList expenses={expenses} />}
+    </section>
   );
 };
 
-export default DisplayExpense;
+export default DisplayBarsExpense;
