@@ -1,5 +1,14 @@
 import { gql } from '@apollo/client';
 
+export const UPDATE_MONTHLY_INCOME = gql`
+  mutation updateMonthlyIncome($monthlyIncome: Float!) {
+    updateMonthlyIncome(monthlyIncome: $monthlyIncome) {
+      _id
+      monthlyIncome
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {

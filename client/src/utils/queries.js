@@ -7,12 +7,7 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      budgets {
-        _id
-        billName
-        billsDescription
-        createdAt
-      }
+      monthlyIncome
     }
   }
 `;

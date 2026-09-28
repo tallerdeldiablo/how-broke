@@ -4,6 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      return User.findById(context.user._id);
+    },
     users: async () => {
       return User.find().populate('expenses');
     },
@@ -20,6 +24,17 @@ const resolvers = {
   },
 
   Mutation: {
+    updateMonthlyIncome: async (parent, { monthlyIncome }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(monthlyIncome) || monthlyIncome < 0) {
+        throw new Error('Income must be zero or greater');
+      }
+      return User.findByIdAndUpdate(
+        context.user._id,
+        { $set: { monthlyIncome } },
+        { new: true, runValidators: true }
+      );
+    },
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);

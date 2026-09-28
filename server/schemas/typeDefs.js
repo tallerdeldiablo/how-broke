@@ -30,6 +30,7 @@ type User {
   username: String
   email: String
   password: String
+  monthlyIncome: Float
   expenses: [Expense]!
 }
 
@@ -55,6 +56,7 @@ type Auth {
 }
 
 type Query {
+  me: User
   users: [User]
   user(username: String!): User
   expenses(username: String): [Expense]
@@ -62,6 +64,7 @@ type Query {
 }
 
 type Mutation {
+  updateMonthlyIncome(monthlyIncome: Float!): User
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addExpense(expenseValue: String!, expenseAuthor: String!, amount: Float): Expense
