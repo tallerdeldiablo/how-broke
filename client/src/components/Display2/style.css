@@ -13,3 +13,15 @@
 .income-form button:disabled { opacity: .6; }
 .income-form small { display: block; margin-top: .4rem; }
 @media (max-width: 600px) { .overview-container { margin-top: 5rem; padding: 1.5rem; } .income-card { flex-direction: column; align-items: stretch; gap: 1rem; } }
+.balance-card { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,.16); }
+.balance-card h2 { margin: 0 0 .5rem; font-size: 1.25rem; }
+.balance-card p { margin: 0 0 .4rem; font-size: 1.8rem; font-weight: 700; }
+.balance-card small { color: #d4e8e9; }
+.balance-note { display: block; margin-top: .25rem; }
+.broke-level { min-width: 95px; padding: .75rem; text-align: center; border-radius: 12px; background: #4e6871; }
+.broke-level.good { background: #167959; }
+.broke-level.low { background: #936d14; }
+.broke-level.red { background: #a93643; }
+.broke-level span { display: block; color: #fff; font-size: 1.7rem; font-weight: 700; }
+.broke-level small { display: block; color: #fff; }
+@media (max-width: 600px) { .balance-card { align-items: flex-start; } .balance-card p { font-size: 1.4rem; } }

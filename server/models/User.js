@@ -24,6 +24,11 @@ const userSchema = new Schema({
     min: 0,
     default: null,
   },
+  monthlySavings: {
+    type: Number,
+    min: 0,
+    default: null,
+  },
   bills: [
     {
       type: Schema.Types.ObjectId,

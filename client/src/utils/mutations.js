@@ -9,6 +9,15 @@ export const UPDATE_MONTHLY_INCOME = gql`
   }
 `;
 
+export const UPDATE_MONTHLY_SAVINGS = gql`
+  mutation updateMonthlySavings($monthlySavings: Float!) {
+    updateMonthlySavings(monthlySavings: $monthlySavings) {
+      _id
+      monthlySavings
+    }
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {

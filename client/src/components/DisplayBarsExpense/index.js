@@ -17,7 +17,7 @@ const DisplayBarsExpense = () => {
   return (
     <section className="expense-panel" aria-labelledby="expenses-heading">
       <div className="expense-panel-heading">
-        <h2 id="expenses-heading">Your expenses</h2>
+        <h2 id="expenses-heading">Monthly expenses</h2>
         <span>{loading ? 'Loading...' : `${expenses.length} items · ${formatMoney(total)}`}</span>
       </div>
       <ExpenseForm onAdded={() => refetch()} />

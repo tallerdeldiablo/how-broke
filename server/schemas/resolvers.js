@@ -35,6 +35,17 @@ const resolvers = {
         { new: true, runValidators: true }
       );
     },
+    updateMonthlySavings: async (parent, { monthlySavings }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(monthlySavings) || monthlySavings < 0) {
+        throw new Error('Savings must be zero or greater');
+      }
+      return User.findByIdAndUpdate(
+        context.user._id,
+        { $set: { monthlySavings } },
+        { new: true, runValidators: true }
+      );
+    },
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
