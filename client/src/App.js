@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import {
   ApolloClient,  InMemoryCache,  ApolloProvider,  createHttpLink,
 } from '@apollo/client';
@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Receipt from './pages/Receipt'
 
 import SingleExpense from './pages/SingleExpense';
+import Help from './pages/Help';
 
 
 
@@ -41,7 +42,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="flex-column justify-flex-start min-100-vh app-with-footer">
         <Header />
           <div className="containercomp">
             <Route exact path="/">
@@ -71,7 +72,13 @@ function App() {
               <SingleExpense />
 
             </Route>
+            <Route exact path="/help">
+              <Help />
+            </Route>
           </div>
+          <footer className="help-footer">
+            <Link to="/help">Help</Link>
+          </footer>
      
         </div>
       </Router>
