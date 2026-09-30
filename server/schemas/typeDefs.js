@@ -30,12 +30,15 @@ type User {
   username: String
   email: String
   password: String
+  monthlyIncome: Float
+  monthlySavings: Float
   expenses: [Expense]!
 }
 
 type Expense {
   _id: ID
   expenseValue: String
+  amount: Float
   expenseAuthor: String
   createdAt: String
   amounts: [Amount]!
@@ -54,6 +57,7 @@ type Auth {
 }
 
 type Query {
+  me: User
   users: [User]
   user(username: String!): User
   expenses(username: String): [Expense]
@@ -61,9 +65,12 @@ type Query {
 }
 
 type Mutation {
+  updateMonthlyIncome(monthlyIncome: Float!): User
+  updateMonthlySavings(monthlySavings: Float!): User
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
-  addExpense(expenseValue: String!, expenseAuthor: String!): Expense
+  addExpense(expenseValue: String!, expenseAuthor: String!, amount: Float): Expense
+  updateExpenseAmount(expenseId: ID!, amount: Float!): Expense
   addAmount(
     expenseId: ID!
     amountValue: String!

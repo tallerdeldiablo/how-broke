@@ -1,99 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { getExpenseAmount, formatMoney } from '../../utils/expenseAmount';
+import { UPDATE_EXPENSE_AMOUNT, REMOVE_EXPENSE } from '../../utils/mutations';
 import './style.css';
-import ProgressBar from "react-bootstrap/ProgressBar";
-import Container from "react-bootstrap/Container"
-import "./style.css";
 
-const ExpenseList = ({ expenses, title }) => {
-  if (!expenses.length) {
-    return <h3>No Expenses Yet</h3>;
-  }
+const ExpenseItem = ({ expense, onUpdated }) => {
+  const [editing, setEditing] = useState(false);
+  const [amount, setAmount] = useState('');
+  const [updateAmount, { loading, error }] = useMutation(UPDATE_EXPENSE_AMOUNT);
+  const [removeExpense, { loading: deleting, error: deleteError }] = useMutation(REMOVE_EXPENSE);
+  const currentAmount = getExpenseAmount(expense);
+
+  const save = async (event) => {
+    event.preventDefault();
+    if (!Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
+    try {
+      await updateAmount({ variables: { expenseId: expense._id, amount: Number(amount) } });
+      await onUpdated();
+      setEditing(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm(`Delete "${expense.expenseValue}"? This cannot be undone.`)) return;
+    try {
+      await removeExpense({ variables: { expenseId: expense._id } });
+      await onUpdated();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
-    <div id="expense-list">
-      <h3>{title}</h3>
-
-
-      <Container className="">
-          <div>
-          <img src="https://img.icons8.com/color/49/000000/home.png"/>
-          <h3 className="d-flex justify-content-between fw-normal">{expenses[0].expenseAuthor}
-          <p>${expenses[0].expenseValue}</p>
-          </h3>
-    <ProgressBar className="rounded-pill">
-  <ProgressBar variant="danger" now={expenses[0].expenseValue} key={1} />
-</ProgressBar>
-</div>
-
-<br></br>
-
-<div>
-<img src="https://img.icons8.com/external-icongeek26-flat-icongeek26/60/000000/external-phone-essentials-icongeek26-flat-icongeek26.png"/>
-<h3 className="d-flex justify-content-between fw-normal">{expenses[1].expenseAuthor}
-<p> ${expenses[1].expenseValue}</p>
-</h3>
-<ProgressBar className="rounded-pill">
-  <ProgressBar variant="warning" now={expenses[1].expenseValue} key={1} />
-</ProgressBar>
-</div>
-
-
-<br></br>
-
-<div>
-<img src="https://img.icons8.com/doodle/60/000000/skateboard--v1.png"/>
-<h3 className="d-flex justify-content-between fw-normal">{expenses[2].expenseAuthor}
-<p>${expenses[2].expenseValue}</p>
-</h3>
-<ProgressBar className="rounded-pill">
-  <ProgressBar variant="success" now={expenses[2].expenseValue} key={1} />
-</ProgressBar>
-</div>
-
-
-
-<br></br>
-
-<div>
-<img src="https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-noodles-takeaway-wanicon-flat-wanicon.png"/>
-<h3 className="d-flex justify-content-between fw-normal">{expenses[3].expenseAuthor}
-<p>${expenses[3].expenseValue}</p></h3>
-<ProgressBar className="rounded-pill">
-  <ProgressBar variant="warning" now={expenses[3].expenseValue}key={1} />
-</ProgressBar>
-</div>
-
-
-
-<br></br>
-
-<div>
-<img src="https://img.icons8.com/external-others-phat-plus/64/000000/external-entertainment-studio-color-line-others-phat-plus-5.png"/>
-<h3 className="d-flex justify-content-between fw-normal">Entertainment
-<p>${expenses[4].expenseValue}</p></h3>
-<ProgressBar className="rounded-pill">
-  <ProgressBar variant="success" now={expenses[4].expenseValue} key={1} />
-</ProgressBar>
-</div>
-
-
-
-<br></br>
-
-<div>
-<img src="https://img.icons8.com/color/48/000000/money-transfer.png"/>
-<h3 className="d-flex justify-content-between fw-normal">Other
-<p>${expenses[5].expenseValue}</p>
-</h3>
-<ProgressBar className="rounded-pill">
-  <ProgressBar variant="danger" now={expenses[5].expenseValue} key={1} />
-</ProgressBar>
-</div>
-
-</Container>
-    </div>
+    <li className="expense-item">
+      <span>{expense.expenseValue}</span>
+      {editing ? (
+        <form className="expense-edit" onSubmit={save}>
+          <input aria-label={`Amount for ${expense.expenseValue}`} type="number" min="0.01" step="0.01"
+            value={amount} onChange={(event) => setAmount(event.target.value)} required autoFocus />
+          <button type="submit" disabled={loading || !(Number(amount) > 0)}>{loading ? 'Saving...' : 'Save'}</button>
+          <button type="button" onClick={() => setEditing(false)} disabled={loading}>Cancel</button>
+          {error && <small role="alert">Couldn't save. Try again.</small>}
+        </form>
+      ) : (
+        <div className="expense-item-actions">
+          <strong>{currentAmount === null ? 'Amount pending' : formatMoney(currentAmount)}</strong>
+          <button type="button" onClick={() => { setAmount(currentAmount == null ? '' : String(currentAmount)); setEditing(true); }}>
+            Edit
+          </button>
+          <button type="button" className="expense-delete" onClick={handleDelete} disabled={deleting}>
+            {deleting ? 'Deleting...' : 'Delete'}
+          </button>
+          {deleteError && <small role="alert">Couldn't delete. Try again.</small>}
+        </div>
+      )}
+    </li>
   );
 };
 
-export default ExpenseList;
+const ExpenseBarList = ({ expenses = [], onUpdated }) => {
+  if (!expenses.length) {
+    return <p className="expense-empty">No expenses yet. Add your first one above.</p>;
+  }
+
+  return (
+    <ul className="expense-items">
+      {expenses.map((expense) => <ExpenseItem key={expense._id} expense={expense} onUpdated={onUpdated} />)}
+    </ul>
+  );
+};
+
+export default ExpenseBarList;

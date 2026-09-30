@@ -40,6 +40,9 @@ The MIT License is a permissive free software license originating at the Massach
 ## Deployed Site
 [Heroku](https://whispering-plains-73070.herokuapp.com/login)
 
+### New preview deployment
+This repository includes `render.yaml` for a Render web service. Connect the GitHub repository using Render's **New > Blueprint** flow, provide `MONGODB_URI` for a MongoDB Atlas database, and deploy. Render generates `JWT_SECRET`. The build serves the original React interface and Express GraphQL API from the same URL. The application needs MongoDB for signup, login, and expenses; do not put the database connection string or JWT secret in GitHub. For local development, set `JWT_SECRET` in your environment.
+
 ## Contributors
 Ricardo Angulo
 * [GitHub](https://github.com/tallerdeldiablo)

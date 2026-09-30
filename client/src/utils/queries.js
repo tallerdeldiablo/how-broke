@@ -7,12 +7,8 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      budgets {
-        _id
-        billName
-        billsDescription
-        createdAt
-      }
+      monthlyIncome
+      monthlySavings
     }
   }
 `;
@@ -51,12 +47,16 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_EXPENSES = gql`
-  query getExpenses {
-    expenses {
+  query getExpenses($username: String) {
+    expenses(username: $username) {
       _id
       expenseValue
+      amount
       expenseAuthor
       createdAt
+      amounts {
+        amountValue
+      }
     }
   }
 `;
@@ -66,6 +66,7 @@ export const QUERY_SINGLE_Expense = gql`
     expense(expenseId: $expenseId) {
       _id
       expenseValue
+      amount
       expenseAuthor
       createdAt
       amounts {

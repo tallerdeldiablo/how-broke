@@ -4,6 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      return User.findById(context.user._id);
+    },
     users: async () => {
       return User.find().populate('expenses');
     },
@@ -11,7 +15,7 @@ const resolvers = {
       return User.findOne({ username }).populate('expenses');
     },
     expenses: async (parent, { username }) => {
-      const params = username ? { username } : {};
+      const params = username ? { expenseAuthor: username } : {};
       return Expense.find(params).sort({ createdAt: -1 });
     },
     expense: async (parent, { expenseId }) => {
@@ -20,6 +24,28 @@ const resolvers = {
   },
 
   Mutation: {
+    updateMonthlyIncome: async (parent, { monthlyIncome }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(monthlyIncome) || monthlyIncome < 0) {
+        throw new Error('Income must be zero or greater');
+      }
+      return User.findByIdAndUpdate(
+        context.user._id,
+        { $set: { monthlyIncome } },
+        { new: true, runValidators: true }
+      );
+    },
+    updateMonthlySavings: async (parent, { monthlySavings }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(monthlySavings) || monthlySavings < 0) {
+        throw new Error('Savings must be zero or greater');
+      }
+      return User.findByIdAndUpdate(
+        context.user._id,
+        { $set: { monthlySavings } },
+        { new: true, runValidators: true }
+      );
+    },
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
@@ -42,14 +68,30 @@ const resolvers = {
 
       return { token, user };
     },
-    addExpense: async (parent, { expenseValue, expenseAuthor }) => {
-      const expense = await Expense.create({ expenseValue, expenseAuthor });
+    addExpense: async (parent, { expenseValue, expenseAuthor, amount }) => {
+      if (amount != null && (!Number.isFinite(amount) || amount <= 0)) {
+        throw new Error('Enter an amount greater than zero');
+      }
+      const expense = await Expense.create({ expenseValue, expenseAuthor, amount });
 
       await User.findOneAndUpdate(
         { username: expenseAuthor },
         { $addToSet: { expenses: expense._id } }
       );
 
+      return expense;
+    },
+    updateExpenseAmount: async (parent, { expenseId, amount }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      if (!Number.isFinite(amount) || amount <= 0) {
+        throw new Error('Enter an amount greater than zero');
+      }
+      const expense = await Expense.findOneAndUpdate(
+        { _id: expenseId, expenseAuthor: context.user.username },
+        { $set: { amount } },
+        { new: true, runValidators: true }
+      );
+      if (!expense) throw new Error('Expense not found');
       return expense;
     },
     addAmount: async (parent, { expenseId, amountValue, amountAuthor }) => {
@@ -64,8 +106,14 @@ const resolvers = {
         }
       );
     },
-    removeExpense: async (parent, { expenseId }) => {
-      return Expense.findOneAndDelete({ _id: expenseId });
+    removeExpense: async (parent, { expenseId }, context) => {
+      if (!context.user) throw new AuthenticationError('Please log in');
+      const expense = await Expense.findOneAndDelete({
+        _id: expenseId,
+        expenseAuthor: context.user.username,
+      });
+      if (!expense) throw new Error('Expense not found');
+      return expense;
     },
     removeAmount: async (parent, { expenseId, amountId }) => {
       return Expense.findOneAndUpdate(

@@ -1,27 +1,27 @@
-.divanimation {
-  width: 50px;
-  height: 50px;
-  background-color: rgb(30, 255, 0);
-  animation-name: example;
-  animation-duration: 6s;
-}
-
-@keyframes example {
-  from {background-color: rgb(123, 255, 0);}
-  to {background-color:  red;}
-}
-
-
-.overview-container {
-  margin-top:200px;
-  margin-bottom: 50px;
-  /* margin: 20px; */
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.692);
-  border-radius: 5px;
-  padding: 2%;
-}
+.overview-container { max-width: 860px; margin: 8rem auto 0; padding: 2rem; color: #fff; background: rgba(1, 39, 55, .84); border-radius: 16px; }
+.overview-container p { margin: 0 0 .5rem; font-size: 1rem; }
+.overview-container h1 { margin: 0 0 .5rem; font-size: clamp(1.75rem, 4vw, 2.75rem); }
+.overview-container span { color: #d4e8e9; }
+.income-card { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-top: 1.5rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,.12); }
+.income-card h2 { margin: 0 0 .5rem; font-size: 1.25rem; }
+.income-card p { margin: 0; font-size: 1.6rem; font-weight: 700; }
+.income-form { width: min(100%, 340px); }
+.income-form label { display: block; margin-bottom: .4rem; font-size: .9rem; }
+.income-form div { display: flex; gap: .5rem; }
+.income-form input { width: 50%; min-width: 0; padding: .65rem; border: 1px solid #9ec7cd; border-radius: 8px; }
+.income-form button { flex: 1; border: 0; border-radius: 8px; padding: .65rem; background: #15aa91; color: #fff; font-weight: 600; }
+.income-form button:disabled { opacity: .6; }
+.income-form small { display: block; margin-top: .4rem; }
+@media (max-width: 600px) { .overview-container { margin-top: 5rem; padding: 1.5rem; } .income-card { flex-direction: column; align-items: stretch; gap: 1rem; } }
+.balance-card { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,.16); }
+.balance-card h2 { margin: 0 0 .5rem; font-size: 1.25rem; }
+.balance-card p { margin: 0 0 .4rem; font-size: 1.8rem; font-weight: 700; }
+.balance-card small { color: #d4e8e9; }
+.balance-note { display: block; margin-top: .25rem; }
+.broke-level { min-width: 95px; padding: .75rem; text-align: center; border-radius: 12px; background: #4e6871; }
+.broke-level.good { background: #167959; }
+.broke-level.low { background: #936d14; }
+.broke-level.red { background: #a93643; }
+.broke-level span { display: block; color: #fff; font-size: 1.7rem; font-weight: 700; }
+.broke-level small { display: block; color: #fff; }
+@media (max-width: 600px) { .balance-card { align-items: flex-start; } .balance-card p { font-size: 1.4rem; } }
