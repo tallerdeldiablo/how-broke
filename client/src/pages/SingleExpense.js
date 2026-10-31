@@ -8,7 +8,6 @@ import AmountList from '../components/AmountList';
 import AmountForm from '../components/AmountForm';
 
 import { QUERY_SINGLE_Expense } from '../utils/queries';
-console.log("QQ",QUERY_SINGLE_Expense )
 
 const SingleExpense = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -18,11 +17,8 @@ const SingleExpense = () => {
     // pass URL parameter
     variables: { expenseId: expenseId },
   });
-  console.log("load",loading)
-  console.log("data",data)
 
   const expense = data?.expense || {};
-  console.log("THIS IS ", expense)
 
   if (loading) {
     return <div>Loading...</div>;

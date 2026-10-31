@@ -6,7 +6,7 @@ import { UPDATE_MONTHLY_INCOME, UPDATE_MONTHLY_SAVINGS } from '../../utils/mutat
 import { formatMoney, getExpenseAmount } from '../../utils/expenseAmount';
 import './style.css';
 
-export default function Display2() {
+export default function FinancialOverview() {
   const [income, setIncome] = useState('');
   const [saved, setSaved] = useState(false);
   const [savings, setSavings] = useState('');
