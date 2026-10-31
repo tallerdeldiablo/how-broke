@@ -1,44 +1,6 @@
-/* #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
- #customers th {
-  border: 1px solid #b3b1b1;
-  padding: 8px;
-  background-color: #9900ff;
-
-}
-
-#customers td {
-  border: 1px solid #dddddd;
-  padding: 8px;
-
-}
-
-#customers tr {
-  border: 1px solid #dddddd;
-  padding: 8px;
-  background-color: #40a7ec;
-}
-
-#custom
-ers th:nth-child(even){background-color: #00ffbf;}
-
-#customers tr:nth-child(even){background-color: #56d38694;}
-
-#customers tr:hover {background-color: rgb(0, 195, 255);}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #2111ff;
-  color: rgb(82, 228, 143);
-} */
-.Expenseform {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+.expense-panel { max-width: 860px; margin: 2rem auto 5rem; padding: 1.5rem 2rem; background: #fff; color: #173840; border-radius: 16px; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+.expense-panel h2 { margin: 0 0 1rem; font-size: 1.5rem; }
+.expense-panel-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.expense-panel-heading span { font-weight: 700; white-space: nowrap; }
+@media (max-width: 600px) { .expense-panel-heading { flex-direction: column; gap: 0; margin-bottom: 1rem; } }
+@media (max-width: 600px) { .expense-panel { padding: 1.25rem; } }

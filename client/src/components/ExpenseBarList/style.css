@@ -1,6 +1,11 @@
-.progressComponent {
-    margin-top: 20px;
-    background: rgba(0, 0, 0, 0.692);
-    border-radius: 5px;
-    padding: 2%;
-}
+.expense-items { list-style: none; padding: 0; margin: 0; }
+.expense-item { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid #d9e8e8; overflow-wrap: anywhere; }
+.expense-item small { color: #52666a; flex-shrink: 0; }
+.expense-empty { color: #52666a; margin: 1rem 0 0; }
+.expense-item-actions, .expense-edit { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
+.expense-item button { padding: .35rem .7rem; border: 1px solid #138c78; border-radius: 6px; color: #075344; background: white; cursor: pointer; }
+.expense-item button:disabled { opacity: .6; cursor: default; }
+.expense-item .expense-delete { border-color: #a32222; color: #a32222; }
+.expense-edit input { width: 115px; padding: .35rem; border: 1px solid #a9c3c5; border-radius: 6px; }
+.expense-edit small { width: 100%; color: #a32222; }
+@media (max-width: 600px) { .expense-item { flex-direction: column; gap: .25rem; } }

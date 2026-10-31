@@ -5,16 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-
-import Button from "react-bootstrap/Button";
-import DisplayExpense from "../DisplayExpense";
 
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+
 
 import "./style.css";
 
@@ -75,7 +69,7 @@ const Header = () => {
 
             <Nav className="justify-content-end flex-grow-1 pe-3">
             <Link to="/home">{Auth.getProfile().data.username}'s Budget</Link>
-              <Link to="/receipt">{Auth.getProfile().data.username}'s Bills</Link>
+              <Link to="/receipt">Expenses</Link>
               <Link to="/logout" onClick={logout}>
                 Logout
               </Link>

@@ -8,6 +8,10 @@ body {
     background-position: center center;
     height: 100vh;
   
-  }
+    }
 
-    
+.app-with-footer { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+.help-footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; padding: 12px 24px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); text-align: center; background: #012737; }
+.help-footer a { color: #fff; font-weight: 600; text-decoration: underline; }
+.help-footer a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.help-page { max-width: 860px; min-height: 60vh; margin: 8rem auto 2rem; padding: 2rem; background: #fff; border-radius: 16px; }

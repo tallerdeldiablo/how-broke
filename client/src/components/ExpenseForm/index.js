@@ -1,104 +1,62 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_EXPENSE } from '../../utils/mutations';
-import { QUERY_EXPENSES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 import './style.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onAdded }) => {
   const [expenseValue, setExpenseText] = useState('');
+  const [amount, setAmount] = useState('');
 
-  const [characterCount, setCharacterCount] = useState(0);
-
-  const [addExpense, { error }] = useMutation(ADD_EXPENSE, {
-    update(cache, { data: { addExpense } }) {
-      try {
-        const { expenses } = cache.readQuery({ query: QUERY_EXPENSES });
-
-        cache.writeQuery({
-          query: QUERY_EXPENSES,
-          data: { expenses: [addExpense, ...expenses] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
+  const [addExpense, { error, loading }] = useMutation(ADD_EXPENSE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (!expenseValue.trim() || !Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
 
     try {
-      const { data } = await addExpense({
+      await addExpense({
         variables: {
-          expenseValue,
+          expenseValue: expenseValue.trim(),
+          amount: Number(amount),
           expenseAuthor: Auth.getProfile().data.username,
         },
       });
 
       setExpenseText('');
+      setAmount('');
+      if (onAdded) await onAdded();
     } catch (err) {
       console.error(err);
     }
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    if (name === 'expenseValue' && value.length <= 280) {
+    const { value } = event.target;
+    if (value.length <= 280) {
       setExpenseText(value);
-      setCharacterCount(value.length);
     }
   };
 
   return (
-    <div id="expense-form">
-      <h3 className="ExpenseInput">ADD A NEW EXPENSE</h3>
-
-      {Auth.loggedIn() ? (
-        <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-      
-          </p>
-          <form
-            className="abcd"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9" id="forminput">
-              <textarea
-                name="expenseValue"
-                placeholder="Add a new expense..."
-                value={expenseValue}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Expense
-              </button>
-            </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
-          </form>
-        </>
-      ) : (
-        <p>
-          You need to be logged in to share your expenses. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )}
+    <div className="expense-entry">
+      <form onSubmit={handleFormSubmit}>
+        <label htmlFor="expense-value">Add an expense</label>
+        <div className="expense-entry-row">
+          <input id="expense-value" name="expenseValue" type="text"
+            placeholder="e.g. Rent, groceries, internet" value={expenseValue}
+            maxLength={280} required onChange={handleChange} />
+          <input id="expense-amount" aria-label="Amount in dollars" type="number"
+            placeholder="Amount ($)" min="0.01" step="0.01" required
+            value={amount} onChange={(event) => setAmount(event.target.value)} />
+          <button type="submit" disabled={!expenseValue.trim() || !(Number(amount) > 0) || loading || !Auth.loggedIn()}>
+            {loading ? 'Adding...' : 'Add expense'}
+          </button>
+        </div>
+        {error && <p role="alert" className="expense-error">{error.message}</p>}
+      </form>
     </div>
   );
 };

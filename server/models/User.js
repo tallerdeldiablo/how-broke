@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
   username: {
@@ -18,6 +18,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 5,
+  },
+  monthlyIncome: {
+    type: Number,
+    min: 0,
+    default: null,
+  },
+  monthlySavings: {
+    type: Number,
+    min: 0,
+    default: null,
   },
   bills: [
     {

@@ -14,6 +14,10 @@ const expenseSchema = new Schema({
     required: true,
     trim: true,
   },
+  amount: {
+    type: Number,
+    min: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
