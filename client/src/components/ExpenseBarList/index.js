@@ -7,15 +7,17 @@ import './style.css';
 const ExpenseItem = ({ expense, onUpdated }) => {
   const [editing, setEditing] = useState(false);
   const [amount, setAmount] = useState('');
+  const [expenseName, setExpenseName] = useState('');
   const [updateAmount, { loading, error }] = useMutation(UPDATE_EXPENSE_AMOUNT);
   const [removeExpense, { loading: deleting, error: deleteError }] = useMutation(REMOVE_EXPENSE);
   const currentAmount = getExpenseAmount(expense);
+  const hasChanges = expenseName.trim() !== expense.expenseValue || Number(amount) !== currentAmount;
 
   const save = async (event) => {
     event.preventDefault();
-    if (!Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
+    if (!hasChanges || !expenseName.trim() || !Number.isFinite(Number(amount)) || Number(amount) <= 0) return;
     try {
-      await updateAmount({ variables: { expenseId: expense._id, amount: Number(amount) } });
+      await updateAmount({ variables: { expenseId: expense._id, amount: Number(amount), expenseValue: expenseName.trim() } });
       await onUpdated();
       setEditing(false);
     } catch (err) {
@@ -38,16 +40,18 @@ const ExpenseItem = ({ expense, onUpdated }) => {
       <span>{expense.expenseValue}</span>
       {editing ? (
         <form className="expense-edit" onSubmit={save}>
+          <input aria-label="Expense name" type="text" value={expenseName}
+            onChange={(event) => setExpenseName(event.target.value)} maxLength={280} required />
           <input aria-label={`Amount for ${expense.expenseValue}`} type="number" min="0.01" step="0.01"
             value={amount} onChange={(event) => setAmount(event.target.value)} required autoFocus />
-          <button type="submit" disabled={loading || !(Number(amount) > 0)}>{loading ? 'Saving...' : 'Save'}</button>
+          <button type="submit" disabled={loading || !hasChanges || !expenseName.trim() || !(Number(amount) > 0)}>{loading ? 'Saving...' : 'Save'}</button>
           <button type="button" onClick={() => setEditing(false)} disabled={loading}>Cancel</button>
           {error && <small role="alert">Couldn't save. Try again.</small>}
         </form>
       ) : (
         <div className="expense-item-actions">
           <strong>{currentAmount === null ? 'Amount pending' : formatMoney(currentAmount)}</strong>
-          <button type="button" onClick={() => { setAmount(currentAmount == null ? '' : String(currentAmount)); setEditing(true); }}>
+          <button type="button" onClick={() => { setExpenseName(expense.expenseValue); setAmount(currentAmount == null ? '' : String(currentAmount)); setEditing(true); }}>
             Edit
           </button>
           <button type="button" className="expense-delete" onClick={handleDelete} disabled={deleting}>

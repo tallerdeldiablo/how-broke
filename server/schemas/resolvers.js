@@ -81,14 +81,22 @@ const resolvers = {
 
       return expense;
     },
-    updateExpenseAmount: async (parent, { expenseId, amount }, context) => {
+    updateExpenseAmount: async (parent, { expenseId, amount, expenseValue }, context) => {
       if (!context.user) throw new AuthenticationError('Please log in');
       if (!Number.isFinite(amount) || amount <= 0) {
         throw new Error('Enter an amount greater than zero');
       }
+      const changes = { amount };
+      if (expenseValue != null) {
+        const name = expenseValue.trim();
+        if (!name || name.length > 280) {
+          throw new Error('Enter a name between 1 and 280 characters');
+        }
+        changes.expenseValue = name;
+      }
       const expense = await Expense.findOneAndUpdate(
         { _id: expenseId, expenseAuthor: context.user.username },
-        { $set: { amount } },
+        { $set: changes },
         { new: true, runValidators: true }
       );
       if (!expense) throw new Error('Expense not found');
